@@ -1,0 +1,18 @@
+!scaling
+Xft.dpi: 160
+Xft.autohint: 0
+Xft.lcdfilter:  lcddefault
+Xft.hintstyle:  hintfull
+Xft.hinting: 1
+Xft.antialias: 1
+Xft.rgba: rgb
+
+!autolock after some time
+Xautolock.locker: sh /scripts/locki3.sh
+Xautolock.time: 10
+
+!top left,	top right,	bottom left,	bottom right
+!nothing	skip timer	nothing		skip timer
+!0		-		0		-
+Xautolock.corners: 0-0-
+Xautolock.cornersize: 1
