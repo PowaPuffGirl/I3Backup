@@ -3,7 +3,7 @@ if [ -z $1 ]
 then 
 	echo no commit message
 else
-	cp -r ~/.config/i3 i3 
+	cp -R ~/.config/i3 i3 
 	git add .
 	git commit -m "$1"
 	git push origin master

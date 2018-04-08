@@ -1,0 +1,174 @@
+##Variable Definitions
+#Set Mod Key to "WINDOWSKEY"
+set $mod Mod4
+
+#ColorTheaming
+set $taskbar-color #222222
+set $taskbar-separator-color #666666
+set $orange-color #ff6b00
+set $urgent-color #E53935
+set $unfocused-window-color #444444
+set $active-text-color #ffffff
+set $inaktive-text-color #888888
+
+#i3 ConfigFolderPath
+set $thisPath ~/.config/i3
+
+
+##Font Style 
+font pango:notosans 10
+
+##Key Bindings
+# start terminator as terminal
+bindsym $mod+Return exec terminator
+
+# kill focused window
+bindsym $mod+Shift+q kill
+
+# start rofi
+bindsym $mod+d exec sh $thisPath/.startRofi.sh "$taskbar-color" "$active-text-color" "$orange-color" "$inaktive-text-color" "$unfocused-window-color"
+
+# focuse surounding windows:
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# change container layout (stacked, tabbed, toggle split)
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+o layout toggle split
+
+# enter fullscreen mode for the focused container
+bindsym $mod+m fullscreen toggle
+
+# toggle tiling / floating
+bindsym $mod+Shift+space floating toggle
+
+# change focus between tiling / floating windows
+bindsym $mod+space focus mode_toggle
+
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+#lock screen
+bindsym $mod+l exec ~/.config/i3/.lockscreen.sh
+
+#scale second monitor works also for fn+f8
+bindsym $mod+p exec xrandr --output eDP1 --auto --output DP1 --auto --scale-from 3200x1800 --panning 3200x1800+3200+0 --right-of eDP1
+
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+# Pulse Audio controls
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer set Master 5%+
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer set Master 5%-
+bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
+
+# Sreen brightness controls
+bindsym XF86MonBrightnessUp exec xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+
+#unused multimedia keys
+#bindsym XF86Search exec 
+
+
+##Workspace settings
+# Define names for default workspaces for which we configure key bindings later on.
+# We use variables to avoid repeating the names in multiple places.
+set $workspace1 "1 "
+set $workspace2 "2 "
+set $workspace3 "3"
+set $workspace4 "4"
+set $workspace5 "5"
+set $workspace6 "6"
+set $workspace7 "7"
+set $workspace8 "8"
+set $workspace9 "9"
+set $workspace10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace $workspace1
+bindsym $mod+2 workspace $workspace2
+bindsym $mod+3 workspace $workspace3
+bindsym $mod+4 workspace $workspace4
+bindsym $mod+5 workspace $workspace5
+bindsym $mod+6 workspace $workspace6
+bindsym $mod+7 workspace $workspace7
+bindsym $mod+8 workspace $workspace8
+bindsym $mod+9 workspace $workspace9
+bindsym $mod+0 workspace $workspace10
+
+# move focused container to workspace
+bindsym $mod+Shift+1 move container to workspace $workspace1
+bindsym $mod+Shift+2 move container to workspace $workspace2
+bindsym $mod+Shift+3 move container to workspace $workspace3
+bindsym $mod+Shift+4 move container to workspace $workspace4
+bindsym $mod+Shift+5 move container to workspace $workspace5
+bindsym $mod+Shift+6 move container to workspace $workspace6
+bindsym $mod+Shift+7 move container to workspace $workspace7
+bindsym $mod+Shift+8 move container to workspace $workspace8
+bindsym $mod+Shift+9 move container to workspace $workspace9
+bindsym $mod+Shift+0 move container to workspace $workspace10
+
+#assign programms to workspaces
+assign [class="Firefox"] $workspace2
+
+
+## resize window (you can also use the mouse for that)
+mode "resize" {
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        # back to normal: Enter or Escape or $mod+r
+        bindsym Escape mode "default"
+        bindsym $mod+r mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+
+##Theaming
+#Window Colors
+#                       border              	background         	text                 
+client.focused          $orange-color		$orange-color		$active-text-color
+client.unfocused        $unfocused-window-color	$unfocused-window-color	$inaktive-text-color
+client.focused_inactive $unfocused-window-color	$unfocused-window-color	$inaktive-text-color
+client.urgent           $urgent-color		$urgent-color	   	$active-text-color
+
+#Taskbar Colors
+bar {
+	status_command i3blocks
+	colors {
+		background $taskbar-color
+	    	separator $taskbar-separator-color
+		#                  border		background		text
+		focused_workspace  $orange-color	$orange-color		$active-text-color
+		inactive_workspace $taskbar-color	$taskbar-color		$taskbar-separator-color
+		urgent_workspace   $urgent-color	$urgent-color		$active-text-color
+	}
+}
+
+
+##floating rules 
+for_window [title="2D-Test"] floating enable
+
+
+##executed startup programms
+exec_always xrandr --output eDP1 --auto --output DP1 --auto --scale-from 3200x1800 --panning 3200x1800+3200+0 --right-of eDP1
+exec_always --no-startup-id feh --bg-scale /home/buttercup/Wallpapers/Wallpaper.png
+exec_always --no-startup-id xss-lock -- sh $thisPath/.lockscreen.sh
+exec_always --no-startup-id xautolock -time 10 -locker "sh $thisPath/.lockscreen.sh"
