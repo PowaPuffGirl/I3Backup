@@ -9,4 +9,7 @@ Gedit
 SuperTux
 Z-ShutdownNow
 Z-RebootNow
+VisualStudioCode
+Octave
+Inkscape
 

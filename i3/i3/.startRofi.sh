@@ -19,7 +19,6 @@ if [ $ApplicationsAmount -gt 10 ]
 then
 	ApplicationsAmount=10
 fi
-echo $ApplicationsAmount
 selected=$(cat $thisPath/ApplicationsToLaunch.txt| grep . | sort | sh $thisPath/.startThemedRofi.sh $backgroundColor $activeTextColor $currentActiveColor $inactiveTextColor $borderColor "$params -lines $ApplicationsAmount")  
 amount=$(cat $thisPath/ApplicationsToLaunch.txt | grep -w $selected | wc -l)
 if [ $amount -eq 1 ]
