@@ -65,6 +65,7 @@ bindsym $mod+l exec ~/.config/i3/.lockscreen.sh
 
 #scale second monitor works also for fn+f8
 bindsym $mod+p exec xrandr --output eDP1 --auto --output DP1 --auto --scale-from 3200x1800 --panning 3200x1800+3200+0 --right-of eDP1
+bindsym $mod+q exec xrandr --output eDP1 --mode 1920x1080 --same-as eDP1
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause

@@ -12,4 +12,5 @@ Z-RebootNow
 VisualStudioCode
 Octave
 Inkscape
+Postman
 
