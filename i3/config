@@ -6,6 +6,7 @@ set $mod Mod4
 set $taskbar-color #222222
 set $taskbar-separator-color #666666
 set $orange-color #ff6b00
+set $blue-color #0c69ff
 set $urgent-color #E53935
 set $unfocused-window-color #444444
 set $active-text-color #ffffff
@@ -64,8 +65,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 bindsym $mod+l exec ~/.config/i3/.lockscreen.sh
 
 #scale second monitor works also for fn+f8
-bindsym $mod+p exec xrandr --output eDP1 --auto --output DP1 --auto --scale-from 3200x1800 --panning 3200x1800+3200+0 --right-of eDP1
-bindsym $mod+q exec xrandr --output eDP1 --mode 1920x1080 --same-as eDP1
+bindsym $mod+p exec sh $thisPath/.startDisplayRofi.sh "$taskbar-color" "$active-text-color" "$blue-color" "$inaktive-text-color" "$unfocused-window-color"
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause

@@ -6,10 +6,11 @@ inactiveTextColor=$4
 borderColor=$5
 if [[ ! -z $6 ]] 
 then 
-	params=$6	
+	params="$6 -p Application|Calc"
 else 
-	params=""
+	params="-p Application|Calc"
 fi
+echo $params
 thisPath=~/.config/i3
 scriptsFolder=$thisPath/Applications
 errorPrompt="Unknown Command"

@@ -1,0 +1,27 @@
+--panning widthxheight[+x+y[/track_widthxtrack_height+track_x+track_y[/border_left/border_top/border_right/border_bottom]]]
+
+
+working 
+dupplicate
+xrandr --output eDP1 --auto --output DP1 --auto --scale-from 3200x1800 --panning 3200x1800+0+0 --same-as eDP1
+
+reset to only one display
+xrandr --output VIRTUAL1 --off --output eDP1 --primary --mode 3200x1800 --pos 0x0 --rotate normal --panning 3200x1800+0+0 --scale 1x1 --output DP1 --off --output HDMI2 --off --output HDMI1 --off --output DP2 --off
+
+set second screen to right of display
+xrandr --output eDP1 --auto --output DP1 --auto --scale-from 3200x1800 --panning 3200x1800+3200+0 --right-of eDP1
+
+set second screen below2 of display
+xrandr --output eDP1 --auto --output DP1 --auto --scale-from 3200x1800 --panning 3200x1800+0+1800 --below eDP1
+
+set second screen to left of display
+xrandr --output DP1 --auto --scale-from 3200x1800 --output eDP1 --auto --panning 3200x1800+3200+0 --right-of DP1
+
+set second screen above display
+xrandr --output DP1 --auto --scale-from 3200x1800 --output eDP1 --auto --panning 3200x1800+0+1800 --below DP1
+
+duplicate and turn display of (scaled to 3200x1800)
+xrandr --output DP1 --auto --scale-from 3200x1800 --panning 3200x1800+0+0 --output eDP1 --off
+
+duplicate screen and use monitor resolution
+xrandr --output VIRTUAL1 --off --output DP1 --primary --mode 1920x1080 --pos 0x0 --rotate normal --panning 1920x1080+0+0 --scale 1x1 --output eDP1 --off --output HDMI2 --off --output HDMI1 --off --output DP2 --off

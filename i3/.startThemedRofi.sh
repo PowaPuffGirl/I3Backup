@@ -14,7 +14,6 @@ fi
 rofi -show \
 	-dmenu \
 	$params \
-	-p "Application / non sudo Command / calc" \
 	-i \
 	-location 3 \
 	-width 25 \
