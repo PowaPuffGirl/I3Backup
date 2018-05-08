@@ -13,4 +13,5 @@ VisualStudioCode
 Octave
 Inkscape
 Postman
-
+Matlab
+Libreoffice
