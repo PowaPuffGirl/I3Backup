@@ -169,7 +169,7 @@ for_window [title="2D-Test"] floating enable
 
 
 ##executed startup programms
-exec_always xrandr --output eDP1 --auto --output DP1 --auto --scale-from 3200x1800 --panning 3200x1800+3200+0 --right-of eDP1
+exec_always sh $thisPath/ScreenCommands/Reset.sh
 exec_always --no-startup-id feh --bg-scale /home/buttercup/Wallpapers/Wallpaper.png
 exec_always --no-startup-id xss-lock -- sh $thisPath/.lockscreen.sh
 exec_always --no-startup-id xautolock -time 10 -locker "sh $thisPath/.lockscreen.sh"

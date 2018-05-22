@@ -16,6 +16,9 @@ cd $thisPath/ScreenCommands
 [[ -z $selected ]] && exit
 
 case $selected in
+"Dual Monitor")
+sh SecondScreenToRight.sh
+    ;;
 "Duplicate")
 sh Duplicate.sh
     ;;
