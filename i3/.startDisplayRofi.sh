@@ -17,7 +17,7 @@ cd $thisPath/ScreenCommands
 
 case $selected in
 "Dual Monitor")
-bash -x DualMonitor.sh
+sh DualMonitor.sh
     ;;
 "Duplicate")
 sh Duplicate.sh
