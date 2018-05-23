@@ -12,42 +12,47 @@ errorPrompt="Unknown Mode"
 selected=$(cat $thisPath/DisplayModes.txt| grep . | sort | sh $thisPath/.startThemedRofi.sh $backgroundColor $activeTextColor $currentActiveColor $inactiveTextColor $borderColor "-p Display -lines 9")  
 
 cd $thisPath/ScreenCommands
+error=""
 
 [[ -z $selected ]] && exit
 
 case $selected in
 "Dual Monitor")
-sh DualMonitor.sh
+	error=$(sh DualMonitor.sh)
     ;;
 "Duplicate")
-sh Duplicate.sh
+	error=$(sh Duplicate.sh)
     ;;
 "Display Only")
-sh OnlyDisplay.sh
+	error=$(sh OnlyDisplay.sh)
     ;;
 "Monitor Only")
-sh OnlySecondScreen.sh
+	error=$(sh OnlySecondScreen.sh)
     ;;
 "Monitor Only QHD")
-sh OnlySecondScreenQHD.sh
+	error=$(sh OnlySecondScreenQHD.sh)
     ;;
 "Reset")
-sh Reset.sh
+	error=$(sh Reset.sh)
     ;;
 "Monitor Above")
-sh SecondScreenAbove.sh
+	error=$(sh SecondScreenAbove.sh)
     ;;
 "Monitor Below")
-sh SecondScreenBelow.sh
+	error=$(sh SecondScreenBelow.sh)
     ;;
 "Monitor Left")
-sh SecondScreenToLeft.sh
+	error=$(sh SecondScreenToLeft.sh)
     ;;
 "Monitor Right")
-sh SecondScreenToRight.sh
+	error=$(sh SecondScreenToRight.sh)
     ;;
 *)
 echo $errorPrompt | sh $thisPath/.startThemedRofi.sh $backgroundColor $activeTextColor "#ff0000" $inactiveTextColor $borderColor "-p Display -lines 1 -hide-scrollbar"
     ;;
 esac
+if ! [[ -z $error ]]
+then 
+	echo $error | sh $thisPath/.startThemedRofi.sh $backgroundColor $activeTextColor "#ff0000" $inactiveTextColor $borderColor "-p Display -lines 1 -hide-scrollbar"
+fi 
 
