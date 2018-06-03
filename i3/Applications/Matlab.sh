@@ -1,3 +1,4 @@
 #!/bin/bash
-cd ~/Matlab\ Projects
+cd ~/git/SeminarArbeit
 matlab -desktop
+

@@ -15,3 +15,6 @@ Inkscape
 Postman
 Matlab
 Libreoffice
+PyCharm
+Gimp
+Screenshot
