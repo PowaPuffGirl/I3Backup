@@ -90,6 +90,13 @@ separator=false
 #instance=eth0
 interval=5
 
+# CPU temperature
+[temperature]
+label=
+interval=5
+separator=true
+
+
 # CPU usage
 #
 # The script may be called with -w and -c switches to specify thresholds,
