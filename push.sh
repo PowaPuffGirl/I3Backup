@@ -19,6 +19,7 @@ cp -R /home/buttercup/.config/i3 i3
 cp -R /home/buttercup/.config/i3blocks i3blocks
 cp -R /home/buttercup/.config/terminator terminator
 cp /home/buttercup/.Xresources .Xresources
+
 git add .
 git commit -m "$message"
-git push origin master
+git push
