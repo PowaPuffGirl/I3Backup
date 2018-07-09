@@ -1,0 +1,10 @@
+Dual Monitor
+Duplicate
+Display Only
+Monitor Only
+Monitor Only QHD
+Reset
+Monitor Above
+Monitor Below
+Monitor Left
+Monitor Right
