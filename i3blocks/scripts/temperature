@@ -1,3 +1,0 @@
-#!/bin/bash
-core0temp=$(sensors | grep "Core 0")
-echo $(echo $core0temp | cut -d ' ' -f 3)
