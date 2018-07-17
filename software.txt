@@ -1,4 +1,4 @@
 youtube-dl
 vlc
 ffmpeg
-
+imagemagic
