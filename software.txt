@@ -3,3 +3,4 @@ vlc
 ffmpeg
 imagemagic
 calc
+xorg-xrandr
