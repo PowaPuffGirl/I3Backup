@@ -21,7 +21,7 @@ cp -R ~/.config/i3 i3
 cp -R ~/.config/i3blocks i3blocks
 cp -R ~/.config/terminator terminator
 cp ~/.Xresources .Xresources
-cp -R /etc/lightdm/
+cp -R /etc/lightdm/ lightdm
 cp ~/.zshrc .zshrc
 
 git add .
