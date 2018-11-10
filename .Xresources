@@ -1,65 +1,18 @@
-!scaling
-Xft.dpi: 160
-Xft.autohint: 0
-Xft.lcdfilter:  lcddefault
-Xft.hintstyle:  hintsfull
-Xft.hinting: 1
-Xft.antialias: 1
-Xft.rgba: rgb
+!!scaling
+   Xft.dpi: 160
+   Xft.autohint: 0
+   Xft.lcdfilter:  lcddefault
+   Xft.hintstyle:  hintsfull
+   Xft.hinting: 1
+   Xft.antialias: 1
+   Xft.rgba: rgb
 
-!autolock after some time
-Xautolock.locker: sh /scripts/locki3.sh
-Xautolock.time: 10
+!!autolock after some time
+   Xautolock.locker: sh /scripts/locki3.sh
+   Xautolock.time: 10
 
 !top left,	top right,	bottom left,	bottom right
 !nothing	skip timer	nothing		skip timer
 !0		-		0		-
-Xautolock.corners: 0-0-
-Xautolock.cornersize: 1
-
-!! URXVT Terminal
-URxvt.scrollBar: false
-URxvt.saveLines: 1000000
-
-!!Background Transparency
-URxvt.transparent: true
-URxvt.shading: 15
-URxvt.depth: 32
-
-!!border
-URxvt.externalBorder: 2
-URxvt.borderColor: #222222
-
-!! Font
-URxvt.font: xft:nk57 monospace:slant=0:weight=200:pixelsize=24:autohint=True:minspace=True
-URxvt.letterSpace: 0
-
-URxvt.cursorColor: #eeff00
-
-!! Colors:
-   URxvt.foreground: #aacccc
-   URxvt.background: #334455
-!! black
-   URxvt.color0:     #2e1f1f
-   URxvt.color8:     #bb8899
-!! red
-   URxvt.color1:     #aa0e50
-   URxvt.color9:     #bb8899
-!! green
-   URxvt.color2:     #1dcc9f
-   URxvt.color10:    #1fd9a9
-!! yellow
-   URxvt.color3:     #27c282
-   URxvt.color11:    #2cdb93
-!! blue
-   URxvt.color4:     #7182a8
-   URxvt.color12:    #8194bf
-!! magenta
-   URxvt.color5:     #aa5566
-   URxvt.color13:    #7f5aa1
-!! cyan
-   URxvt.color6:     #22ddcc
-   URxvt.color14:    #669997
-!! white
-   URxvt.color7:     #b7bbbd
-   URxvt.color15:    #d9d9d9
+   Xautolock.corners: 0-0-
+   Xautolock.cornersize: 1

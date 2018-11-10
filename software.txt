@@ -5,5 +5,10 @@ imagemagic
 calc
 xorg-xrandr
 vim
-urxvt
+terminator
+zsh 
+oh-my-zsh
+powerlevel9k
+pakku (aur)
+font awesome (aur)  
 

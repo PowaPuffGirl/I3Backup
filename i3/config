@@ -23,7 +23,7 @@ font pango:alma mono 10
 
 ##Key Bindings
 # start terminator as terminal
-bindsym $mod+Return exec urxvt #terminator
+bindsym $mod+Return exec terminator
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -172,6 +172,7 @@ bar {
 exec --no-startup-id xautolock -time 10 -locker "sh $thisPath/.lockscreen.sh" -corners 0-00 -cornersize 2
 exec --no-startup-id xss-lock -- sh $thisPath/.lockscreen.sh
 exec nm-applet
+exec compton -CGb --no-fading-openclose
 
 exec_always sh $thisPath/ScreenCommands/Reset.sh
 exec_always --no-startup-id feh --bg-scale /home/buttercup/Wallpapers/Wallpaper2.jpg
