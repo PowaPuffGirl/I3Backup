@@ -4,3 +4,6 @@ ffmpeg
 imagemagic
 calc
 xorg-xrandr
+vim
+urxvt
+

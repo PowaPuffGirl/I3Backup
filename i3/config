@@ -5,11 +5,13 @@ set $mod Mod4
 #ColorTheaming
 set $taskbar-color #222222
 set $taskbar-separator-color #666666
-set $orange-color #eeff00
+set $main-color #eeff00
+set $main-window-color #222222
 set $blue-color #0c69ff
 set $urgent-color #E53935
 set $unfocused-window-color #444444
-set $active-text-color #111111
+set $active-text-color #dddddd
+set $active-toolbar-text-color #000000
 set $inaktive-text-color #888888
 
 #i3 ConfigFolderPath
@@ -27,7 +29,7 @@ bindsym $mod+Return exec urxvt #terminator
 bindsym $mod+Shift+q kill
 
 # start rofi
-bindsym $mod+d exec sh $thisPath/.startRofi.sh "$taskbar-color" "$active-text-color" "$orange-color" "$inaktive-text-color" "$unfocused-window-color"
+bindsym $mod+d exec sh $thisPath/.startRofi.sh "$taskbar-color" "$active-text-color" "$main-color" "$inaktive-text-color" "$unfocused-window-color"
 
 # focuse surounding windows:
 bindsym $mod+Left focus left
@@ -148,7 +150,7 @@ default_border none
 
 #Window Colors
 #                       border              	background         	text                 
-client.focused          $orange-color		$orange-color		$active-text-color
+client.focused          $main-window-color	$main-window-color	$active-text-color
 client.unfocused        $unfocused-window-color	$unfocused-window-color	$inaktive-text-color
 client.focused_inactive $unfocused-window-color	$unfocused-window-color	$inaktive-text-color
 client.urgent           $urgent-color		$urgent-color	   	$active-text-color
@@ -160,7 +162,7 @@ bar {
 		background $taskbar-color
 	    	separator $taskbar-separator-color
 		#                  border		background		text
-		focused_workspace  $orange-color	$orange-color		$active-text-color
+		focused_workspace  $main-color		$main-color		$active-toolbar-text-color
 		inactive_workspace $taskbar-color	$taskbar-color		$taskbar-separator-color
 		urgent_workspace   $urgent-color	$urgent-color		$active-text-color
 	}
