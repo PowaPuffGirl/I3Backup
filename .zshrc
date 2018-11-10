@@ -17,13 +17,13 @@ POWERLEVEL9K_CUSTOM_ICON="echo  "
 POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=069
 POWERLEVEL9K_CUSTOM_ICON_FOREGROUND=015
 
-POWERLEVEL9K_USER_ICON=''
+POWERLEVEL9K_USER_ICON=' '
 POWERLEVEL9K_HOME_ICON=''
 POWERLEVEL9K_HOME_SUB_ICON=''
 POWERLEVEL9K_FOLDER_ICON=''
 POWERLEVEL9K_ETC_ICON=''
 
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_icon user dir_writable dir vcs)
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir_writable dir vcs)
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -79,6 +79,8 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(custom_icon user dir_writable dir vcs)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
+  zsh-autosuggestions
+  autojump
 )
 
 source $ZSH/oh-my-zsh.sh

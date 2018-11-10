@@ -4,11 +4,10 @@
   inactive_color_offset = 0.447058823529
   suppress_multiple_term_dialog = True
   title_font = sans 12
-  title_inactive_bg_color = "#babdb6"
-  title_inactive_fg_color = "#555753"
-  title_receive_bg_color = "#babdb6"
-  title_receive_fg_color = "#8ae234"
-  title_transmit_bg_color = "#babdb6"
+  title_inactive_bg_color = "#737171"
+  title_inactive_fg_color = "#d9d8d8"
+  title_transmit_bg_color = "#231f20"
+  title_transmit_fg_color = "#d9d8d8"
 [keybindings]
   copy = <Primary>c
   paste = <Primary>v
@@ -29,11 +28,12 @@
   [[myProfil]]
     background_darkness = 0.75
     background_type = transparent
-    cursor_color = "#ffffff"
+    cursor_blink = False
+    cursor_color = "#eeff00"
     cursor_color_fg = False
     font = NK57 Monospace Bold Condensed 12
-    foreground_color = "#d3d7cf"
+    foreground_color = "#eeeeec"
     icon_bell = False
-    palette = "#282828:#cc241d:#98971a:#d79921:#458588:#b16286:#689d6a:#a89984:#928374:#fb4934:#b8bb26:#fabd2f:#83a598:#d3869b:#8ec07c:#ebdbb2"
+    palette = "#231f20:#ee2e24:#00853e:#ffd204:#009ddc:#98005d:#85cebc:#d9d8d8:#737171:#ee2e24:#00853e:#ffd204:#009ddc:#98005d:#85cebc:#ffffff"
     show_titlebar = False
     use_system_font = False

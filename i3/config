@@ -175,4 +175,4 @@ exec nm-applet
 exec compton -CGb --no-fading-openclose
 
 exec_always sh $thisPath/ScreenCommands/Reset.sh
-exec_always --no-startup-id feh --bg-scale /home/buttercup/Wallpapers/Wallpaper2.jpg
+exec_always feh --bg-scale /home/buttercup/Wallpapers/Wallpaper2.jpg

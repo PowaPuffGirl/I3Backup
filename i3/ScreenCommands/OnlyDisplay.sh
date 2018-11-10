@@ -14,3 +14,5 @@ then
 else 
 	echo "ERROR eDP1 not connected"
 fi
+
+feh --bg-scale /home/buttercup/Wallpapers/Wallpaper2.jpg   

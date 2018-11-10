@@ -40,3 +40,5 @@ then
 	xrandr --output eDP1 --panning 3200x1800+0+0
 fi
 
+
+feh --bg-scale /home/buttercup/Wallpapers/Wallpaper2.jpg
