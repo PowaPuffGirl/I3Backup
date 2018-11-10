@@ -8,6 +8,7 @@ vim
 terminator
 zsh 
 oh-my-zsh
+zsh-autosuggestions
 powerlevel9k
 pakku (aur)
 font awesome (aur)  
