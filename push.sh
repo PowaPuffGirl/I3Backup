@@ -4,7 +4,7 @@ message="no Message"
 
 if ! [[ -z $1 ]]
 then
-	$message=$1
+	message=$1
 fi
 
 cd ~/git/I3Backup
