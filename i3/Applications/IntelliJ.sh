@@ -1,2 +1,2 @@
 #!/bin/bash
-~/Intellij\ IDEA/idea-IU-181.4203.550/bin/idea.sh
+~/Intellij/idea-IU-182.4129.33/bin/idea.sh

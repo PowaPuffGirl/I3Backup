@@ -29,7 +29,7 @@
     background_color = "#222222"
     cursor_color = "#ffffff"
     cursor_color_fg = False
-    font = Noto Sans Mono Semi-Bold Condensed 12
+    font = NK57 Monospace Bold Condensed 12
     foreground_color = "#ff6b00"
     icon_bell = False
     palette = "#000000:#cd0000:#00cd00:#cdcd00:#0000ee:#cd00cd:#00cdcd:#e5e5e5:#7f7f7f:#ff0000:#00ff00:#ffff00:#5c5cff:#ff00ff:#00ffff:#ffffff"

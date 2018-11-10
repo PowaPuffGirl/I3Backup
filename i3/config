@@ -5,11 +5,11 @@ set $mod Mod4
 #ColorTheaming
 set $taskbar-color #222222
 set $taskbar-separator-color #666666
-set $orange-color #ff6b00
+set $orange-color #eeff00
 set $blue-color #0c69ff
 set $urgent-color #E53935
 set $unfocused-window-color #444444
-set $active-text-color #ffffff
+set $active-text-color #111111
 set $inaktive-text-color #888888
 
 #i3 ConfigFolderPath
@@ -17,11 +17,11 @@ set $thisPath ~/.config/i3
 
 
 ##Font Style 
-font pango:notosans 10
+font pango:alma mono 10
 
 ##Key Bindings
 # start terminator as terminal
-bindsym $mod+Return exec terminator
+bindsym $mod+Return exec urxvt #terminator
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -143,6 +143,9 @@ bindsym $mod+r mode "resize"
 
 
 ##Theaming
+#Window Border
+default_border none
+
 #Window Colors
 #                       border              	background         	text                 
 client.focused          $orange-color		$orange-color		$active-text-color
@@ -163,14 +166,10 @@ bar {
 	}
 }
 
-
-##floating rules 
-for_window [title="2D-Test"] floating enable
-
-
 ##executed startup programms
 exec --no-startup-id xautolock -time 10 -locker "sh $thisPath/.lockscreen.sh" -corners 0-00 -cornersize 2
 exec --no-startup-id xss-lock -- sh $thisPath/.lockscreen.sh
+exec nm-applet
 
 exec_always sh $thisPath/ScreenCommands/Reset.sh
-exec_always --no-startup-id feh --bg-scale /home/buttercup/Wallpapers/Wallpaper.png
+exec_always --no-startup-id feh --bg-scale /home/buttercup/Wallpapers/Wallpaper2.jpg
