@@ -7,8 +7,6 @@ then
 	$message=$1
 fi
 
-
-
 cd ~/git/I3Backup
 rm -R i3
 rm -R i3blocks
