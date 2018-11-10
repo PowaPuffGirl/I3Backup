@@ -29,7 +29,7 @@ bindsym $mod+Return exec urxvt #terminator
 bindsym $mod+Shift+q kill
 
 # start rofi
-bindsym $mod+d exec sh $thisPath/.startRofi.sh "$taskbar-color" "$active-text-color" "$main-color" "$inaktive-text-color" "$unfocused-window-color"
+bindsym $mod+d exec sh $thisPath/.startRofi.sh "$taskbar-color" "$active-toolbar-text-color" "$main-color" "$inaktive-text-color" "$unfocused-window-color"
 
 # focuse surounding windows:
 bindsym $mod+Left focus left
