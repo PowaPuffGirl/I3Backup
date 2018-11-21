@@ -22,7 +22,7 @@ cp -R ~/.config/terminator terminator
 cp ~/.Xresources .Xresources
 cp -R /etc/lightdm/ lightdm
 cp ~/.zshrc .zshrc
-cp ~/QMK/qmk_firmware/keyboards/katana60 katana60
+cp -R ~/QMK/qmk_firmware/keyboards/katana60 katana60
 
 git add .
 git commit -m "$message"
