@@ -8,16 +8,9 @@
 #define CUT     LCTL(KC_X)
 #define COPY    LCTL(KC_C)
 #define PASTE   LCTL(KC_V)
-#define CU_WIFI	KC_F13
-#define CU_VUP	KC_F14
-#define CU_VDO	KC_F15
-#define CU_VMU  KC_F16
-#define CU_MNXT KC_F17
-#define CU_MPRE KC_F18
-#define CU_MSTO KC_F20
-#define CU_MPLY KC_F21
-#define CU_BUP	KC_F22
-#define CU_BDO	KC_F23
+#define CU_WIFI	KC_F13	// XF86Tools
+#define CU_BUP	KC_F22	// XF86TouchpadOn
+#define CU_BDO	KC_F23	// XF86TouchpadOff
 
 #define BASE 0
 #define FN1 1
@@ -90,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 */
 /*							ALT GR MOD
 ------------------------------------------------------------------------------------------------------------------------
-|       |       |       |       |       |       |       |       |       |       |       |       |       |              |
+|  ^ °  |       |       |       |       |       |       |       |       |       |       |       |       |              |
 ------------------------------------------------------------------------------------------------------------------------
 |          |       |       |       |       |       |       |       |       |  ü Ü  |       |  ö Ö  |       |           |
 ------------------------------------------------------------------------------------------------------------------------
@@ -123,10 +116,10 @@ KC_LCTL,KC_LGUI,KC_LALT,KC_RALT,KC_SPC, DE_PLUS,KC_SPC,	MO(1),	KC_LEFT,KC_DOWN,K
 */
 [FN1] = LAYOUT(
 RESET,	KC_F1,	KC_F2,	KC_F3,	KC_F4,	KC_F5,	KC_F6,	KC_F7,	KC_F8,	KC_F9,	KC_F10,	KC_F11,	KC_F12,	______,	______, 
-______,	______,	______,	______,	______,	______,	______,	______,	______,	______,	______,	______,	______,	______,
-______,	______,	______,	______,	______,	______,	CU_VUP, CU_BUP,	______,	______,	______,	______,	______,	______,
-______, ______,	______,	______,	______,	______,	CU_VDO, CU_WIFI,CU_BDO,	______,	______,	______,	______,	______,	______,	
-oooooo,	oooooo,	oooooo,	oooooo,	KC_PSCR,CU_VMU,	KC_INS,	______,	CU_MPRE,CU_MSTO,CU_MPLY,CU_MNXT	
+DE_CIRC,______,	______,	______,	______,	______,	______,	______,	______,	______,	______,	______,	______,	______,
+______,	______,	______,	______,	______,	______,	KC_VOLU,CU_BUP,	______,	______,	______,	______,	______,	______,
+______, ______,	______,	______,	______,	______,	KC_VOLD,CU_WIFI,CU_BDO,	______,	______,	______,	______,	______,	______,	
+oooooo,	oooooo,	oooooo,	oooooo,	KC_PSCR,KC_MUTE,KC_INS,	______,	KC_MPRV,KC_MSTP,KC_MPLY,KC_MNXT	
 )
 };
 
@@ -189,7 +182,20 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			return false;
 		} else {
 			return true;
-		}	
+		}
+	    case KC_ESC:
+		if (get_mods() & (MOD_BIT(KC_RALT))) {
+			if (get_mods() & (MOD_BIT(KC_LSFT))) {
+				printKey(false,true,DE_CIRC);
+			} else 	if (get_mods() & (MOD_BIT(KC_RSFT))) {
+				printKey(false,true,DE_CIRC);
+			} else {
+				printKey(false,false,DE_CIRC);
+			}
+		} else {
+			return true;
+		}
+
 	}
     }
     return true;
