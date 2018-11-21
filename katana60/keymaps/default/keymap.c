@@ -1,29 +1,13 @@
-/* Copyright 2017 Baris Tosun
- *
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http://www.gnu.org/licenses/>.
- */
 #include QMK_KEYBOARD_H
 #include "keymap_german.h"
 
 #define ______ KC_NO
 #define oooooo KC_TRNS
 
-// Windows based definitions.
-#define UNDO    LCTL(KC_Z)         // UNDO
-#define CUT     LCTL(KC_X)         // CUT
-#define COPY    LCTL(KC_C)         // COPY
-#define PASTE   LCTL(KC_V)         // PASTE
+#define UNDO    LCTL(KC_Z)
+#define CUT     LCTL(KC_X)
+#define COPY    LCTL(KC_C)
+#define PASTE   LCTL(KC_V)
 #define CU_WIFI	KC_F13
 #define CU_VUP	KC_F14
 #define CU_VDO	KC_F15
@@ -35,8 +19,8 @@
 #define CU_BUP	KC_F22
 #define CU_BDO	KC_F23
 
-#define BASE 0 // Default
-#define FN1 1 // Numbers
+#define BASE 0
+#define FN1 1
 
 bool raltset = false;
 bool lsftset = false;
@@ -91,6 +75,32 @@ enum macro_id {
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
+/*
+------------------------------------------------------------------------------------------------------------------------
+|  ESC  |  DE 1 |  DE 2 |  DE 3 |  DE 4 |  DE 5 |  DE 6 |  DE 7 |  DE 8 |  DE 9 |  DE 0 |   ß   |   ´   |   Backspace  |
+------------------------------------------------------------------------------------------------------------------------
+|   TAB    | DE Q  |   W   |  DE E |   R   |   T   |  [ {  |  ] }  |   Z   |   U   |   I   |   O   |   P   |   Entf    |
+------------------------------------------------------------------------------------------------------------------------
+|  CAPS  |   A   |   S   |   D   |   F   |   G   |  HOME   |  PG UP  |   H   |   J   |   K   |   L   | DE  # |  ENTER  |
+------------------------------------------------------------------------------------------------------------------------
+| SHIFT | DE <  |   Y   |   X   |   C   |   V   |   B   |  END  | PG DO |   N   |   M   | DE , | DE .  | DE -  | SHIFT |
+------------------------------------------------------------------------------------------------------------------------
+| STRG  |   WIN   |   ALT   | ALT GR  |      SPACE      | DE +  |    SPACE     |  FN   | LEFT  | DOWN  |   UP  | RIGHT |
+------------------------------------------------------------------------------------------------------------------------
+*/
+/*							ALT GR MOD
+------------------------------------------------------------------------------------------------------------------------
+|       |       |       |       |       |       |       |       |       |       |       |       |       |              |
+------------------------------------------------------------------------------------------------------------------------
+|          |       |       |       |       |       |       |       |       |  ü Ü  |       |  ö Ö  |       |           |
+------------------------------------------------------------------------------------------------------------------------
+|        |  ä Ä  |       |       |       |       |         |         |       |       |       |       |       |         |
+------------------------------------------------------------------------------------------------------------------------
+|       |       |       |       |       |       |       |      |       |       |       |       |       |       |       |
+------------------------------------------------------------------------------------------------------------------------
+|       |         |         |         |                 |      |             |       |        |        |       |       |
+------------------------------------------------------------------------------------------------------------------------
+*/
 [BASE] = LAYOUT(
 KC_ESC,	DE_1,	DE_2,	DE_3,	DE_4,	DE_5,	DE_6,	DE_7,	DE_8,	DE_9,	DE_0,	KC_MINS,DE_ACUT,KC_BSPC,KC_BSPC,
 KC_TAB, KC_Q,   KC_W,   KC_E,   KC_R,   KC_T,	CU_LBRC,CU_RBRC,DE_Z,   KC_U,   KC_I,   KC_O,   KC_P,   KC_DEL,
@@ -98,12 +108,25 @@ KC_CAPS,KC_A,	KC_S,	KC_D,	KC_F,	KC_G,	KC_HOME,KC_PGUP,KC_H,	KC_J,	KC_K,	KC_L,	DE
 KC_LSFT,DE_LESS,DE_Y,	KC_X,	KC_C,	KC_V,	KC_B,	KC_END,	KC_PGDN,KC_N,	KC_M,	KC_COMM,KC_DOT,	DE_MINS,KC_RSFT,	
 KC_LCTL,KC_LGUI,KC_LALT,KC_RALT,KC_SPC, DE_PLUS,KC_SPC,	MO(1),	KC_LEFT,KC_DOWN,KC_UP,	KC_RIGHT
 ),
+/*
+------------------------------------------------------------------------------------------------------------------------
+| FLASH |   F1  |   F2  |   F3  |   F4  |   F5  |   F6  |   F7  |   F8  |   F9  |  F10  |  F11  |  F12  |              |
+------------------------------------------------------------------------------------------------------------------------
+|          |       |       |       |       |       |       |       |       |       |       |       |       |           |
+------------------------------------------------------------------------------------------------------------------------
+|        |       |       |       |       |       |  VOL+   | BRIG +  |       |       |       |       |       |         |
+------------------------------------------------------------------------------------------------------------------------
+|       |       |       |       |       |       | VOL - |WIFI TOGGLE|  BRIG - |      |      |     |      |      |      |
+------------------------------------------------------------------------------------------------------------------------
+| STRG  |   WIN   |   ALT   | ALT GR  |      DRUCK     | MUTE  |   INSERT    |       | PREV  | STOP  |PLAY/PAUSE| NEXT |
+------------------------------------------------------------------------------------------------------------------------
+*/
 [FN1] = LAYOUT(
 RESET,	KC_F1,	KC_F2,	KC_F3,	KC_F4,	KC_F5,	KC_F6,	KC_F7,	KC_F8,	KC_F9,	KC_F10,	KC_F11,	KC_F12,	______,	______, 
 ______,	______,	______,	______,	______,	______,	______,	______,	______,	______,	______,	______,	______,	______,
 ______,	______,	______,	______,	______,	______,	CU_VUP, CU_BUP,	______,	______,	______,	______,	______,	______,
 ______, ______,	______,	______,	______,	______,	CU_VDO, CU_WIFI,CU_BDO,	______,	______,	______,	______,	______,	______,	
-oooooo,	oooooo,	oooooo,	oooooo,	______,	CU_VMU,	KC_INS,	______,	CU_MPRE,CU_MSTO,CU_MPLY,CU_MNXT	
+oooooo,	oooooo,	oooooo,	oooooo,	KC_PSCR,CU_VMU,	KC_INS,	______,	CU_MPRE,CU_MSTO,CU_MPLY,CU_MNXT	
 )
 };
 
