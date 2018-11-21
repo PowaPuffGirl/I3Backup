@@ -44,3 +44,4 @@ elif [[ $QUALITY -ge 40 ]]; then
 else
     echo "#FF0000"
 fi
+

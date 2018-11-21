@@ -83,9 +83,21 @@ bindsym XF86AudioMute exec --no-startup-id amixer set Master toggle
 bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 
+# Keyboard controls
+bindsym XF86Launch5 exec --no-startup-id amixer set Master 5%+
+bindsym XF86Launch6 exec --no-startup-id amixer set Master 5%-
+bindsym XF86Launch7 exec --no-startup-id amixer set Master toggle
+bindsym XF86Tools exec $thisPath/.toggleNetwork.sh
+bindsym XF86TouchpadOn exec xbacklight -inc 5
+bindsym XF86TouchpadOff exec xbacklight -dec 5
+bindsym XF86Launch9 exec playerctl previous
+bindsym XF86AudioMicMute exec playerctl stop
+bindsym XF86TouchpadToggle exec playerctl play-pause
+bindsym XF86Launch8 exec playerctl next
+
+
 #unused multimedia keys
 #bindsym XF86Search exec 
-
 
 ##Workspace settings
 # Define names for default workspaces for which we configure key bindings later on.

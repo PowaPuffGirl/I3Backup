@@ -83,6 +83,8 @@ plugins=(
   autojump
 )
 
+bindkey '^ ' autosuggest-accept
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
