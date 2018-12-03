@@ -16,4 +16,4 @@ playerctl
 qmk
 dfu-programmer
 pakku (aur)
-limebar (aur)
+lemonbar-xft-git (aur)   
