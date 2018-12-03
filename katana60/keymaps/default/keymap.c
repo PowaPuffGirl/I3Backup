@@ -62,9 +62,30 @@ void printKey(bool ralt, bool sft, uint16_t keycode) {
 	rsftset = false;
 }
 
+bool lguiset = false;
+
+void lockScreen(void) {
+	if (get_mods() & (MOD_BIT(KC_LGUI))) {
+		unregister_code(KC_LGUI);
+		raltset = true;
+	}
+	
+	register_code(KC_LGUI);
+	register_code(KC_L);
+	unregister_code(KC_L);
+	unregister_code(KC_LGUI);
+
+	if (lguiset) {
+		register_code(KC_LGUI);
+	}
+
+	lguiset = false;
+}
+
 enum macro_id {
 	CU_RBRC = SAFE_RANGE,
 	CU_LBRC,
+	CU_LOCK,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -81,6 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 | STRG  |   WIN   |   ALT   | ALT GR  |      SPACE      | DE +  |    SPACE     |  FN   | LEFT  | DOWN  |   UP  | RIGHT |
 ------------------------------------------------------------------------------------------------------------------------
 */
+
 /*							ALT GR MOD
 ------------------------------------------------------------------------------------------------------------------------
 |  ^ °  |       |       |       |       |       |       |       |       |       |       |       |       |              |
@@ -107,7 +129,7 @@ KC_LCTL,KC_LGUI,KC_LALT,KC_RALT,KC_SPC, DE_PLUS,KC_SPC,	MO(1),	KC_LEFT,KC_DOWN,K
 ------------------------------------------------------------------------------------------------------------------------
 |          |MOUSE K|MOUSE U|MOUSE C|       |       |       |       |       |       |       |       |       |           |
 ------------------------------------------------------------------------------------------------------------------------
-|        |MOUSE L|MOUSE D|MOUSE R|       |       |  VOL+   | BRIG +  |       |       |       |       |       |         |
+|        |MOUSE L|MOUSE D|MOUSE R|       |       |  VOL+   | BRIG +  |       |       |       | LOCK  |       |         |
 ------------------------------------------------------------------------------------------------------------------------
 |       |       |       |       |       |       | VOL - |WIFI TOGGLE|  BRIG - |      |      |     |      |      |      |
 ------------------------------------------------------------------------------------------------------------------------
@@ -117,7 +139,7 @@ KC_LCTL,KC_LGUI,KC_LALT,KC_RALT,KC_SPC, DE_PLUS,KC_SPC,	MO(1),	KC_LEFT,KC_DOWN,K
 [FN1] = LAYOUT(
 RESET,	KC_F1,	KC_F2,	KC_F3,	KC_F4,	KC_F5,	KC_F6,	KC_F7,	KC_F8,	KC_F9,	KC_F10,	KC_F11,	KC_F12,	______,	______, 
 ______, KC_BTN1,KC_MS_U,KC_BTN2,______,	______,	______,	______,	______,	______,	______,	______,	______,	______,
-______, KC_MS_L,KC_MS_D,KC_MS_R,______,	______,	KC_VOLU,CU_BUP,	______,	______,	______,	______,	______,	______,
+______, KC_MS_L,KC_MS_D,KC_MS_R,______,	______,	KC_VOLU,CU_BUP,	______,	______,	______,	CU_LOCK,______,	______,
 ______, ______,	______,	______,	______,	______,	KC_VOLD,CU_WIFI,CU_BDO,	______,	______,	______,	______,	______,	______,	
 oooooo,	oooooo,	oooooo,	oooooo,	KC_PSCR,KC_MUTE,KC_INS,	______,	KC_MPRV,KC_MSTP,KC_MPLY,KC_MNXT	
 )
@@ -195,6 +217,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 		} else {
 			return true;
 		}
+	    case CU_LOCK:
+		lockScreen();
+		return false;
 
 	}
     }
