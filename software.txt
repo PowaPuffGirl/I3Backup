@@ -6,14 +6,24 @@ calc
 xorg-xrandr
 vim
 terminator
+redshift
+playerctl
+
 zsh 
 oh-my-zsh
 zsh-autosuggestions
 powerlevel9k
 ttf-font-awesome  
-redshift
-playerctl
+
 qmk
 dfu-programmer
+
+ANDROID
+adb-tools
+mtpfs
+gvfs-mtp
+jmtpfs(aur)
+
 pakku (aur)
-lemonbar-xft-git (aur)   
+lemonbar-xft-git (aur)
+
