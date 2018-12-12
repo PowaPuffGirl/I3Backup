@@ -177,7 +177,7 @@ bar {
 exec --no-startup-id xautolock -time 10 -locker "sh $thisPath/.lockscreen.sh" -corners 0-00 -cornersize 2
 exec --no-startup-id xss-lock -- sh $thisPath/.lockscreen.sh
 exec nm-applet
-#exec compton -CGb --no-fading-openclose
+exec compton -CGb --no-fading-openclose
 
 exec_always redshift -P -O 5400
 exec_always sh $thisPath/ScreenCommands/Reset.sh

@@ -11,3 +11,4 @@ Libreoffice
 Gimp
 Screenshot
 AndroidStudio
+VisualStudioCode

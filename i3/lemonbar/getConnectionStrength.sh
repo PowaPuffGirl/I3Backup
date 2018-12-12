@@ -16,15 +16,21 @@ currentVal=$( echo $QualityString | cut -d '/' -f 1 )
 
 strength=$( calc "floor(100/$maxVal*$currentVal)" )
 
-if [[ $strength -gt 75 ]] 
+if [[ $strength -gt 84 ]] 
 then 
-	printf "%s" "%{F#00ff00} %{B#111111}"
+	printf "%s" "%{F#00ff00} %{B#111111}"
+elif [[ $strength -gt 67 ]]
+then 
+	printf "%s" "%{F#b3f442} %{B#111111}"
 elif [[ $strength -gt 50 ]]
-then 
-	printf "%s" "%{F#b3f442} %{B#111111}"
-elif [[ $strength -gt 25 ]]
 then
-	printf "%s" "%{F#f49d41} %{B#111111}"
+	printf "%s" "%{F#f4e841} %{B#111111}"
+elif [[ $strength -gt 33 ]] 
+then
+	printf "%s" "%{F#f49d41} %{B#111111}"
+elif [[ $strength -gt 16 ]]
+then
+	printf "%s" "%{F#f45e41} %{B#111111}"
 else
-	printf "%s" "%{F#ff0000} %{B#111111}"
+	printf "%s" "%{F#ff0000} %{B#111111}"
 fi

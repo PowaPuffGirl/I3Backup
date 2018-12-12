@@ -39,7 +39,8 @@ while true; do
 	fi
 	volume=$( sh getVolume.sh )
 	brightness=$( sh getBrightness.sh )
+	caps=$( sh checkCaps.sh )
 	
-	echo "%{r} $volume$brightness$wifi$temp$load$battery$( sh getTime.sh )$connection%{B#111111}"
+	echo "%{r} $caps$volume$brightness$wifi$temp$load$battery$( sh getTime.sh )$connection %{B#111111}"
 	sleep 1
 done
