@@ -9,6 +9,14 @@ terminator
 redshift
 playerctl
 
+Sound
+pulseaudio
+pulseaudio-alsa
+lib32-libpulse
+lib32-alsa-plugins
+pavucontrol
+pulseaudio-jack
+
 zsh 
 oh-my-zsh
 zsh-autosuggestions
