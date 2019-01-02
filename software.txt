@@ -9,6 +9,11 @@ terminator
 redshift
 playerctl
 
+Printing
+cups
+hplip
+system-config-printer
+
 Sound
 pulseaudio
 pulseaudio-alsa
