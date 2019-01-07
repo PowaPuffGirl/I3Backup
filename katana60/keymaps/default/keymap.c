@@ -206,10 +206,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 			return true;
 		}
 	    case KC_ESC:
-		if (get_mods() & (MOD_BIT(KC_RALT))) {
-			if (get_mods() & (MOD_BIT(KC_LSFT))) {
-				printKey(false,true,DE_CIRC);
-			} else 	if (get_mods() & (MOD_BIT(KC_RSFT))) {
+		if (get_mods() & (MOD_BIT(KC_LSFT))) {
+			if (get_mods() & (MOD_BIT(KC_RALT))) {
 				printKey(false,true,DE_CIRC);
 			} else {
 				printKey(false,false,DE_CIRC);
@@ -223,5 +221,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
 	}
     }
+        switch(keycode) {
+		case KC_ESC:
+		  if (get_mods() & (MOD_BIT(KC_LSFT))) {
+			register_code(KC_BSPC);
+			unregister_code(KC_BSPC);
+		  }
+	}
     return true;
 }
