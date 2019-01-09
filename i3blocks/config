@@ -30,6 +30,10 @@ command=~/.config/i3blocks/scripts/$BLOCK_NAME
 separator_block_width=15
 markup=none
 
+#[randwallpaper]
+#label=
+#interval=60
+
 [caps]
 label=
 interval=1

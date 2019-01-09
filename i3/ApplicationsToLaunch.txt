@@ -12,3 +12,5 @@ Gimp
 Screenshot
 AndroidStudio
 VisualStudioCode
+Octave
+Matlab
