@@ -18,6 +18,13 @@
 #define CONFIG_USER_H
 
 #include "../../config.h"
+#include "keymap_german.h"
+
+#undef USE_SPLIT_LEFT_SHIFT
+#define USE_SPLIT_LEFT_SHIFT 0
+
+#define LSPO_KEY DE_8
+#define RSPC_KEY DE_9
 
 // place overrides here
 

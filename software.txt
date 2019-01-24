@@ -8,6 +8,7 @@ vim
 terminator
 redshift
 playerctl
+gparted
 
 Printing
 cups
