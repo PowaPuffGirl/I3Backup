@@ -15,6 +15,7 @@ rm .Xresources
 rm -R lightdm
 rm .zshrc
 rm -R katana60
+rm .conkyrc
 
 cp -R ~/.config/i3 i3 
 cp -R ~/.config/i3blocks i3blocks
@@ -23,6 +24,7 @@ cp ~/.Xresources .Xresources
 cp -R /etc/lightdm/ lightdm
 cp ~/.zshrc .zshrc
 cp -R ~/QMK/qmk_firmware/keyboards/katana60 katana60
+cp ~/.conkyrc .conkyrc
 
 git add .
 git commit -m "$message"
