@@ -29,7 +29,7 @@ bindsym $mod+Return exec terminator
 bindsym $mod+Shift+q kill
 
 # start rofi
-bindsym $mod+d exec sh $thisPath/.startRofi.sh "$taskbar-color" "$active-toolbar-text-color" "$main-color" "$inaktive-text-color" "$unfocused-window-color"
+bindsym $mod+d exec sh $thisPath/startRofi.sh "$taskbar-color" "$active-toolbar-text-color" "$main-color" "$inaktive-text-color" "$unfocused-window-color"
 
 # focuse surounding windows:
 bindsym $mod+Left focus left
@@ -64,10 +64,10 @@ bindsym $mod+Shift+r restart
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 #lock screen
-bindsym $mod+l exec ~/.config/i3/.lockscreen.sh
+bindsym $mod+l exec ~/.config/i3/lockscreen.sh
 
 #scale second monitor works also for fn+f8
-bindsym $mod+p exec sh $thisPath/.startDisplayRofi.sh "$taskbar-color" "$active-text-color" "$blue-color" "$inaktive-text-color" "$unfocused-window-color"
+bindsym $mod+p exec sh $thisPath/startDisplayRofi.sh "$taskbar-color" "$active-text-color" "$blue-color" "$inaktive-text-color" "$unfocused-window-color"
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play-pause
@@ -85,7 +85,7 @@ bindsym XF86MonBrightnessUp exec xbacklight -inc 5
 bindsym XF86MonBrightnessDown exec xbacklight -dec 5
 
 # Keyboard controls
-bindsym XF86Tools exec $thisPath/.toggleNetwork.sh
+bindsym XF86Tools exec $thisPath/toggleNetwork.sh
 bindsym XF86TouchpadOn exec xbacklight -inc 5
 bindsym XF86TouchpadOff exec xbacklight -dec 5
 
@@ -162,7 +162,7 @@ client.urgent           $urgent-color		$urgent-color	   	$active-text-color
 
 #Taskbar Colors
 bar {
-	status_command i3blocks
+	status_command i3blocks #$thisPath/i3BarInfo.py
 	colors {
 		background $taskbar-color
 	    	separator $taskbar-separator-color
@@ -174,11 +174,12 @@ bar {
 }
 
 ##executed startup programms
-exec --no-startup-id xautolock -time 10 -locker "sh $thisPath/.lockscreen.sh" -corners 0-00 -cornersize 2
-exec --no-startup-id xss-lock -- sh $thisPath/.lockscreen.sh
+exec --no-startup-id sh $thisPath/runConky.sh
+exec --no-startup-id xautolock -time 10 -locker "sh $thisPath/lockscreen.sh" -corners 0-00 -cornersize 2
+exec --no-startup-id xss-lock -- sh $thisPath/lockscreen.sh
 exec nm-applet
 exec compton -CGb --no-fading-openclose
 
 exec_always redshift -P -O 5400
-exec_always sh $thisPath/ScreenCommands/Reset.sh
+#exec_always sh $thisPath/ScreenCommands/Reset.sh
 exec_always sh $thisPath/randWallpaper.sh

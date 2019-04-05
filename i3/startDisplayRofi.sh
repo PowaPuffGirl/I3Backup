@@ -9,7 +9,7 @@ thisPath=~/.config/i3
 scriptsFolder=$thisPath/ScreenCommands
 errorPrompt="Unknown Mode"
 
-selected=$(cat $thisPath/DisplayModes.txt| grep . | sort | sh $thisPath/.startThemedRofi.sh $backgroundColor $activeTextColor $currentActiveColor $inactiveTextColor $borderColor "-p Display -lines 9")  
+selected=$(cat $thisPath/DisplayModes.txt| grep . | sort | sh $thisPath/startThemedRofi.sh $backgroundColor $activeTextColor $currentActiveColor $inactiveTextColor $borderColor "-p Display -lines 9")  
 
 cd $thisPath/ScreenCommands
 error=""
@@ -48,11 +48,11 @@ case $selected in
 	error=$(sh SecondScreenToRight.sh)
     ;;
 *)
-echo $errorPrompt | sh $thisPath/.startThemedRofi.sh $backgroundColor $activeTextColor "#ff0000" $inactiveTextColor $borderColor "-p Display -lines 1 -hide-scrollbar"
+echo $errorPrompt | sh $thisPath/startThemedRofi.sh $backgroundColor $activeTextColor "#ff0000" $inactiveTextColor $borderColor "-p Display -lines 1 -hide-scrollbar"
     ;;
 esac
 if ! [[ -z $error ]]
 then 
-	echo $error | sh $thisPath/.startThemedRofi.sh $backgroundColor $activeTextColor "#ff0000" $inactiveTextColor $borderColor "-p Display -lines 1 -hide-scrollbar"
+	echo $error | sh $thisPath/startThemedRofi.sh $backgroundColor $activeTextColor "#ff0000" $inactiveTextColor $borderColor "-p Display -lines 1 -hide-scrollbar"
 fi 
 

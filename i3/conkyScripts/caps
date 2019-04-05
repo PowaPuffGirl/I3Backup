@@ -1,0 +1,13 @@
+#!/bin/bash
+
+value=$( xset -q | grep Caps | cut -d "o" -f 3 | cut -d " " -f 1 )
+
+background="#ff0000"
+text="Locked"
+if [[ $value == "ff" ]]
+then
+	background="#ffffff"
+	text="Unlocked"
+fi
+
+echo "$text"

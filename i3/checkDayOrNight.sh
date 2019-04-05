@@ -9,4 +9,4 @@ if [[ $timer -gt 0 ]]
 then
 	sleep $timer
 fi
-sh .changeDisplayColor.sh 5100 6500
+sh changeDisplayColor.sh 5100 6500

@@ -1,0 +1,24 @@
+#!/bin/bash
+
+getsink() {
+    pacmd list-sinks |
+        awk '/index:/{i++} /* index:/{print i; exit}'
+}
+
+checkMute() {
+    pacmd list-sinks |
+        awk '/^\smuted: /{i++} i=='$(getsink)'{print $2; exit}'
+
+}
+
+volume() {
+	pacmd list-sinks |
+        awk '/^\svolume:/{i++} i=='$(getsink)'{print $5; exit}'
+}
+
+if [[ $(checkMute) == 'no' ]]
+then
+	volume
+else 
+	echo Mute
+fi
