@@ -30,7 +30,7 @@ def getJsonElement(key, value, printComma):
 		value=value.strip()
 		text = text + '"' + value + '"'
 	elif isinstance(value, bool):
-		if value:
+		if value == True:
 			text = text + 'true'
 		else:
 			text = text + 'false'
@@ -46,9 +46,14 @@ def printTime():
 def printCpuTemp(lines):
 	temperatureicon=lines[79]
 	temperature=lines[80]
-	print(getI3Json(inputText = temperatureicon))
+	temp=temperature[1:len(temperature)-5]
+	if int(temp) > 80:
+		urgent = True
+	else:
+		urgent = False
+	print(getI3Json(inputText = temperatureicon, urgent = urgent))
 	print(',')
-	print(getI3Json(inputText = temperature, separator = True, separator_block_width = 12))
+	print(getI3Json(inputText = temperature, urgent = urgent, separator = True, separator_block_width = 12))
 
 def printAvgCpu(lines):
 	cpu0=lines[20]
@@ -61,27 +66,54 @@ def printAvgCpu(lines):
 	cpu2=cpu2[0:len(cpu2)-3]
 	cpu3=cpu3[0:len(cpu3)-3]
 	cpu = int((int(cpu0) + int(cpu1) + int(cpu2) + int(cpu3))/4*10)/10
-	print(getI3Json(inputText = cpuicon))
+	if cpu > 90:
+		urgent=True
+	else:
+		urgent=False 
+	print(getI3Json(inputText = cpuicon, urgent = urgent))
 	print(',')		
-	print(getI3Json(inputText = str(cpu) + '%', separator = True, separator_block_width = 12))
+	print(getI3Json(inputText = str(cpu) + '%', urgent = urgent, separator = True, separator_block_width = 12))
 
 def printBattery(lines):
 	batteryicon=lines[82]
 	battery=lines[83]
-	print(getI3Json(inputText = batteryicon))
+	bat=battery[0:3]
+	if bat.endswith(' ') or bat.endswith('%'):
+		bat=bat[0:len(bat)-1]
+	elif bat.endswith('% '):
+		bat=bat[0:len(bat)-2]
+	if int(bat) > 80:
+		color='#00ff00'
+	elif int(bat) > 60:
+		color='#a8ff00'
+	elif int(bat) > 40:
+		color='#fff600'
+	elif int(bat) > 20:
+		color='#ffae00'
+	else:
+		color='#ff0000'
+	print(getI3Json(inputText = batteryicon, textColor = color))
 	print(',')		
-	print(getI3Json(inputText = battery, separator = True, separator_block_width = 12))
+	print(getI3Json(inputText = battery, separator = True, separator_block_width = 12, textColor = color))
 
 def printWIFI(lines):
 	wifiip=lines[43]
-	print(getI3Json(inputText = wifiip, separator = True, separator_block_width = 12))
+	if "No Address" in wifiip:
+		print(getI3Json(inputText = wifiip, separator = True, separator_block_width = 12, textColor = '#ff0000'))		
+	else:
+		print(getI3Json(inputText = wifiip, separator = True, separator_block_width = 12, textColor = '#00ff00'))		
+
 
 def printCaps(lines):
 	capslockicon=lines[76]
 	capslock=lines[77]
-	print(getI3Json(inputText = capslockicon))
+	if "unlocked" not in capslock: 
+		urgent = True
+	else:
+		urgent = False
+	print(getI3Json(inputText = capslockicon, urgent = urgent))
 	print(',')
-	print(getI3Json(inputText = capslock, separator = True, separator_block_width = 12))
+	print(getI3Json(inputText = capslock, urgent = urgent, separator = True, separator_block_width = 12))
 
 def printBrightness(lines):
 	brigthnessicon=lines[73]
