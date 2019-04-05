@@ -9,6 +9,7 @@ terminator
 redshift
 playerctl
 gparted
+net-tools
 
 Printing
 cups
