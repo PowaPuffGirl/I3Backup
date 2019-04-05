@@ -40,120 +40,83 @@ def getJsonElement(key, value, printComma):
 		text = text + ', '
 	return text
 
+def printTime():
+	print(getI3Json(inputText = strftime("%w %B %Y %H:%M:%S", localtime()), separator = True, separator_block_width = 12))
+
+def printCpuTemp(lines):
+	temperatureicon=lines[79]
+	temperature=lines[80]
+	print(getI3Json(inputText = temperatureicon))
+	print(',')
+	print(getI3Json(inputText = temperature, separator = True, separator_block_width = 12))
+
+def printAvgCpu(lines):
+	cpu0=lines[20]
+	cpu1=lines[22]
+	cpu2=lines[24]
+	cpu3=lines[26]
+	cpuicon=lines[17]
+	cpu0=cpu0[0:len(cpu0)-3]
+	cpu1=cpu1[0:len(cpu1)-3]
+	cpu2=cpu2[0:len(cpu2)-3]
+	cpu3=cpu3[0:len(cpu3)-3]
+	cpu = int((int(cpu0) + int(cpu1) + int(cpu2) + int(cpu3))/4*10)/10
+	print(getI3Json(inputText = cpuicon))
+	print(',')		
+	print(getI3Json(inputText = str(cpu) + '%', separator = True, separator_block_width = 12))
+
+def printBattery(lines):
+	batteryicon=lines[82]
+	battery=lines[83]
+	print(getI3Json(inputText = batteryicon))
+	print(',')		
+	print(getI3Json(inputText = battery, separator = True, separator_block_width = 12))
+
+def printWIFI(lines):
+	wifiip=lines[43]
+	print(getI3Json(inputText = wifiip, separator = True, separator_block_width = 12))
+
+def printCaps(lines):
+	capslockicon=lines[76]
+	capslock=lines[77]
+	print(getI3Json(inputText = capslockicon))
+	print(',')
+	print(getI3Json(inputText = capslock, separator = True, separator_block_width = 12))
+
+def printBrightness(lines):
+	brigthnessicon=lines[73]
+	brigthness=lines[74]
+	print(getI3Json(inputText = brigthnessicon))
+	print(',')
+	print(getI3Json(inputText = brigthness, separator = True, separator_block_width = 12))
+
+def printVolume(lines):
+	volumeicon=lines[70]
+	volume=lines[71]
+	print(getI3Json(inputText = volumeicon))
+	print(',')
+	print(getI3Json(inputText = volume, separator = True, separator_block_width = 12))
+
 def updateText(conkyFile):
 	lines = conkyFile.readlines()
-	for x in lines:
-		print(x, end = '')
-	
-	if len(lines) >= 82:
-		time=lines[0]
-		date=lines[1]
-		systeminfotext=lines[2]
-		systemtext=lines[3]
-		systemname=lines[4]
-		uptimetext=lines[5]
-		uptime=lines[6]
-		kernaltext=lines[7]
-		kernal=lines[8]
-		ostext=lines[9]
-		os=lines[10]
-		frequencytext=lines[11]
-		frequency=lines[12]
-		mactext=lines[13]
-		mac=lines[14]
-		cputext=lines[15]
-		loadavgtext=lines[16]
-		avgnumber=lines[17]
-		cpu0text=lines[18]
-		cpu0=lines[19]
-		cpu1text=lines[20]
-		cpu1=lines[21]
-		cpu2text=lines[22]
-		cpu2=lines[23]
-		cpu3text=lines[24]
-		cpu3=lines[25]
-		Memoryswaptext=lines[26]
-		ramusagetext=lines[27]
-		ramusage=lines[28]
-		rampercentage=lines[29]
-		memoryswaptext=lines[30]
-		memoryswap=lines[31]
-		memorypercentage=lines[32]
-		filesystemtext=lines[33]
-		filesystemname=lines[34]
-		filesystemsize=lines[35]
-		filesystempercentage=lines[36]
-		readstext=lines[37]
-		readspersec=lines[38]
-		writestext=lines[39]
-		writespersec=lines[40]
-		networkingtext=lines[41]
-		wifiip=lines[42]
-		downtext=lines[43]
-		downpersec=lines[44]
-		uptext=lines[45]
-		uppersec=lines[46]
-		downtotaltext=lines[47]
-		downtotal=lines[48]
-		uptotaltext=lines[49]
-		uptotal=lines[50]
-		empty=lines[51]
-		topreasurcestext=lines[52]
-		processestext=lines[53]
-		numberprocesses=lines[54]
-		runningtext=lines[55]
-		runningnumber=lines[56]
-		cpuusagetext=lines[57]
-		tableheader=lines[58]
-		top1cpu=lines[59]
-		top2cpu=lines[60]
-		top3cpu=lines[61]
-		memusagetext=lines[62]
-		memheader=lines[63]
-		top1mem=lines[64]
-		top2mem=lines[65]
-		top3mem=lines[66]
-		systemstatstext=lines[67]
-		volumetext=lines[68]
-		volumeicon=lines[69]
-		volume=lines[70]
-		brightnesstext=lines[71]
-		brigthnessicon=lines[72]
-		brigthness=lines[73]
-		capslocktext=lines[74]
-		capslockicon=lines[75]
-		capslock=lines[76]
-		batterytext=lines[77]
-		batteryicon=lines[78]
-		battery=lines[79]
-		temperaturetext=lines[80]
-		temperatureicon=lines[81]
-		temperature=lines[82]
 
+	if len(lines) >= 83:
 		print(',[')
-		print(getI3Json(inputText = volumeicon))
+		printVolume(lines)
 		print(',')
-		print(getI3Json(inputText = volume, separator = True, separator_block_width = 12))
+		printBrightness(lines)
 		print(',')
-		print(getI3Json(inputText = brigthnessicon))
+		printCaps(lines)
 		print(',')
-		print(getI3Json(inputText = brigthness, separator = True, separator_block_width = 12))
+		printWIFI(lines)
 		print(',')
-		print(getI3Json(inputText = capslockicon))
+		printAvgCpu(lines)
 		print(',')
-		print(getI3Json(inputText = capslock, separator = True, separator_block_width = 12))
+		printCpuTemp(lines)
 		print(',')
-		print(getI3Json(inputText = wifiip, separator = True, separator_block_width = 12))
+		printBattery(lines)
 		print(',')
-		print(getI3Json(inputText = temperatureicon))
-		print(',')
-		print(getI3Json(inputText = temperature, separator = True, separator_block_width = 12))
-		print(',')		
-		print(getI3Json(inputText = batteryicon))
-		print(',')
-		print(getI3Json(inputText = battery, separator = True, separator_block_width = 12))
-		print(',')
-		print(getI3Json(inputText = strftime("%w %B %Y %H:%M:%S", localtime()), separator = True, separator_block_width = 12))
+		printTime()
 		print(']')
 		sys.stdout.flush()
 
@@ -169,3 +132,83 @@ while True:
 		print('',end = '')
 	finally:
 		sleep(1)
+
+'''
+time=lines[0]
+date=lines[1]
+systeminfotext=lines[2]
+systemtext=lines[3]
+systemname=lines[4]
+uptimetext=lines[5]
+uptime=lines[6]
+kernaltext=lines[7]
+kernal=lines[8]
+ostext=lines[9]
+os=lines[10]
+frequencytext=lines[11]
+frequency=lines[12]
+mactext=lines[13]
+mac=lines[14]
+cputext=lines[15]
+loadavgtext=lines[16]
+avgnumber=lines[18]
+cpu0text=lines[19]
+
+cpu1text=lines[21]
+
+cpu2text=lines[23]
+
+cpu3text=lines[25]
+
+Memoryswaptext=lines[27]
+ramusagetext=lines[28]
+ramusage=lines[29]
+rampercentage=lines[30]
+memoryswaptext=lines[31]
+memoryswap=lines[32]
+memorypercentage=lines[33]
+filesystemtext=lines[34]
+filesystemname=lines[35]
+filesystemsize=lines[36]
+filesystempercentage=lines[37]
+readstext=lines[38]
+readspersec=lines[39]
+writestext=lines[40]
+writespersec=lines[41]
+networkingtext=lines[42]
+
+downtext=lines[44]
+downpersec=lines[45]
+uptext=lines[46]
+uppersec=lines[47]
+downtotaltext=lines[48]
+downtotal=lines[49]
+uptotaltext=lines[50]
+uptotal=lines[51]
+empty=lines[52]
+topreasurcestext=lines[53]
+processestext=lines[54]
+numberprocesses=lines[55]
+runningtext=lines[56]
+runningnumber=lines[57]
+cpuusagetext=lines[58]
+tableheader=lines[59]
+top1cpu=lines[60]
+top2cpu=lines[61]
+top3cpu=lines[62]
+memusagetext=lines[63]
+memheader=lines[64]
+top1mem=lines[65]
+top2mem=lines[66]
+top3mem=lines[67]
+systemstatstext=lines[68]
+volumetext=lines[69]
+
+brightnesstext=lines[72]
+
+capslocktext=lines[75]
+
+batterytext=lines[78]
+
+temperaturetext=lines[81]
+'''

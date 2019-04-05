@@ -162,7 +162,7 @@ client.urgent           $urgent-color		$urgent-color	   	$active-text-color
 
 #Taskbar Colors
 bar {
-	status_command i3blocks #$thisPath/i3BarInfo.py
+	status_command $thisPath/i3BarInfo.py
 	colors {
 		background $taskbar-color
 	    	separator $taskbar-separator-color
