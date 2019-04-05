@@ -42,6 +42,8 @@ def getJsonElement(key, value, printComma):
 
 def updateText(conkyFile):
 	lines = conkyFile.readlines()
+	for x in lines:
+		print(x, end = '')
 	
 	if len(lines) >= 82:
 		time=lines[0]
