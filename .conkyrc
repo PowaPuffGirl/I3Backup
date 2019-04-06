@@ -144,6 +144,9 @@ ${color1}SYSTEM STATS ${hr 3}
 ${color0}Volume	${goto 120}${color}${font FontAwesome:size=9}  ${font}${exec /home/buttercup/.config/i3/conkyScripts/volume} ${goto 270}${color0}Brightness ${alignr}${color}${font FontAwesome:size=9} ${font}${exec /home/buttercup/.config/i3/conkyScripts/brightness}
 ${color0}CapsLock ${goto 120}${color}${if_match "${exec /home/buttercup/.config/i3/conkyScripts/caps}"=="Unlocked"}${font FontAwesome:size=9}  ${font}unlocked${else}${color2}${font FontAwesome:size=9}  ${font}locked${endif} ${goto 270}${color0}Temp ${alignr}${color}${font FontAwesome:size=9}  ${font}${exec /home/buttercup/.config/i3/conkyScripts/temperature}
 ${color0}Battery ${goto 120}\
+${if_match "100" == "${exec acpi -b | grep 'Battery 0' | cut -d ' ' -f4 | cut -d '%' -f1}"}\
+${#00ff00}${font FontAwesome:size=9}   ${font}${exec /home/buttercup/.config/i3/conkyScripts/battery}\
+${else}\
 ${if_match "80" <= "${exec acpi -b | grep 'Battery 0' | cut -d ' ' -f4 | cut -d '%' -f1}"}\
 ${#00ff00}${font FontAwesome:size=9}   ${font}${exec /home/buttercup/.config/i3/conkyScripts/battery}\
 ${else}\
@@ -157,6 +160,7 @@ ${if_match "20" <= "${exec acpi -b | grep 'Battery 0' | cut -d ' ' -f4 | cut -d 
 ${#ffae00}${font FontAwesome:size=9}   ${font}${exec /home/buttercup/.config/i3/conkyScripts/battery}\
 ${else}\
 ${#ff0000}${font FontAwesome:size=9}   ${font}${exec /home/buttercup/.config/i3/conkyScripts/battery}\
+${endif}\
 ${endif}\
 ${endif}\
 ${endif}\

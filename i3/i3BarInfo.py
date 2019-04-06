@@ -163,7 +163,7 @@ while True:
 	except (FileNotFoundError, IOError) as e:
 		print('',end = '')
 	finally:
-		sleep(1)
+		sleep(0.5)
 
 '''
 time=lines[0]

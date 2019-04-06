@@ -181,5 +181,5 @@ exec nm-applet
 exec compton -CGb --no-fading-openclose
 
 exec_always redshift -P -O 5400
-#exec_always sh $thisPath/ScreenCommands/Reset.sh
+exec_always sh $thisPath/ScreenCommands/Reset.sh
 exec_always sh $thisPath/randWallpaper.sh
