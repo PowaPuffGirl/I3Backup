@@ -41,7 +41,7 @@ def getJsonElement(key, value, printComma):
 	return text
 
 def printTime():
-	print(getI3Json(inputText = strftime("%w %B %Y %H:%M:%S", localtime()), separator = True, separator_block_width = 12))
+	print(getI3Json(inputText = strftime("%D %H:%M:%S", localtime()), separator = True, separator_block_width = 12))
 
 def printCpuTemp(lines):
 	temperatureicon=lines[79]
