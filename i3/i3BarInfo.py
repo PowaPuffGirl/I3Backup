@@ -78,10 +78,10 @@ def printBattery(lines):
 	batteryicon=lines[82]
 	battery=lines[83]
 	bat=battery[0:3]
-	if bat.endswith(' ') or bat.endswith('%'):
-		bat=bat[0:len(bat)-1]
-	elif bat.endswith('% '):
+	if bat.endswith('% '):
 		bat=bat[0:len(bat)-2]
+	elif bat.endswith(' ') or bat.endswith('%'):
+		bat=bat[0:len(bat)-1]
 	if int(bat) > 80:
 		color='#00ff00'
 	elif int(bat) > 60:
@@ -92,9 +92,16 @@ def printBattery(lines):
 		color='#ffae00'
 	else:
 		color='#ff0000'
+	text = str(bat) + '%'
+	if 'discharging' in battery:
+		text = text + ' DIS '
+	else:
+		text = text + ' CHR '
+	if ')' in battery:
+		text = text + battery[len(battery)-8:len(battery)]
 	print(getI3Json(inputText = batteryicon, textColor = color))
 	print(',')		
-	print(getI3Json(inputText = battery, separator = True, separator_block_width = 12, textColor = color))
+	print(getI3Json(inputText = text, separator = True, separator_block_width = 12, textColor = color))
 
 def printWIFI(lines):
 	wifiip=lines[43]
@@ -108,12 +115,11 @@ def printCaps(lines):
 	capslockicon=lines[76]
 	capslock=lines[77]
 	if "unlocked" not in capslock: 
-		urgent = True
+		print(getI3Json(inputText = capslockicon, urgent = True))
+		print(',')
+		print(getI3Json(inputText = 'locked', urgent = True, separator = True, separator_block_width = 12))
 	else:
-		urgent = False
-	print(getI3Json(inputText = capslockicon, urgent = urgent))
-	print(',')
-	print(getI3Json(inputText = capslock, urgent = urgent, separator = True, separator_block_width = 12))
+		print(getI3Json(inputText = capslockicon, urgent = False, separator = True, separator_block_width = 12))
 
 def printBrightness(lines):
 	brigthnessicon=lines[73]
