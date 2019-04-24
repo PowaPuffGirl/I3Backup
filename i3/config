@@ -132,6 +132,7 @@ bindsym $mod+Shift+0 move container to workspace $workspace10
 
 #assign programms to workspaces
 assign [class="Firefox"] $workspace2
+for_window [class="^Chromium$"] floating disable, move window to workspace current
 
 
 ## resize window (you can also use the mouse for that)

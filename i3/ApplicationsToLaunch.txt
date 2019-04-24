@@ -1,3 +1,4 @@
+Chromium
 Rider
 Factorio
 Clion
