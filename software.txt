@@ -27,7 +27,8 @@ pulseaudio-jack
 zsh 
 oh-my-zsh
 zsh-autosuggestions
-powerlevel9k
+# powerlevel9k
+powerlevel10k
 ttf-font-awesome  
 
 qmk
