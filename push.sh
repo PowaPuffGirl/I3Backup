@@ -16,7 +16,11 @@ rm -R lightdm
 rm .zshrc
 rm -R katana60
 rm .conkyrc
+rm libinput-gestures.conf
+rm 30-touchpad.conf
 
+cp /etc/X11/xorg.conf.d/30-touchpad.conf
+cp ~/.config/libinput-gestures.conf
 cp -R ~/.config/i3 i3 
 cp -R ~/.config/i3blocks i3blocks
 cp -R ~/.config/terminator terminator

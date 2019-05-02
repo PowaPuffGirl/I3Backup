@@ -107,6 +107,10 @@ set $workspace9 "9"
 set $workspace10 "10"
 
 # switch to workspace
+
+bindsym $mod+Shift+p workspace prev
+bindsym $mod+Shift+n workspace next
+
 bindsym $mod+1 workspace $workspace1
 bindsym $mod+2 workspace $workspace2
 bindsym $mod+3 workspace $workspace3
@@ -180,6 +184,7 @@ exec --no-startup-id xautolock -time 10 -locker "sh $thisPath/lockscreen.sh" -co
 exec --no-startup-id xss-lock -- sh $thisPath/lockscreen.sh
 exec nm-applet
 exec compton -CGb --no-fading-openclose
+exec --no-startup-id libinput-gestures-setup start
 
 exec_always redshift -P -O 5400
 exec_always sh $thisPath/ScreenCommands/Reset.sh

@@ -26,7 +26,6 @@
     cursor_color = "#aaaaaa"
     show_titlebar = False
   [[myProfil]]
-    background_darkness = 0.5
     background_type = transparent
     cursor_blink = False
     cursor_color = "#eeff00"

@@ -88,6 +88,8 @@ bindkey '^ ' autosuggest-accept
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
+#
+PATH="$HOME/anaconda3/bin:$PATH"
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -115,3 +117,5 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
+

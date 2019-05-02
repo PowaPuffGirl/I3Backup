@@ -41,4 +41,5 @@ jmtpfs(aur)
 
 pakku (aur)
 lemonbar-xft-git (aur)
+libinput-gestures (aur)
 
