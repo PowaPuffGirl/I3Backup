@@ -30,7 +30,7 @@ cp -R /etc/lightdm/ lightdm
 cp ~/.zshrc .zshrc
 cp -R ~/QMK/qmk_firmware/keyboards/katana60 katana60
 cp ~/.conkyrc .conkyrc
-cp /etc/systemd/logind.conf
+cp /etc/systemd/logind.conf logind.conf
 
 git add .
 git commit -m "$message"
