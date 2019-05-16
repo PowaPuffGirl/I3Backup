@@ -18,6 +18,7 @@ rm -R katana60
 rm .conkyrc
 rm libinput-gestures.conf
 rm 30-touchpad.conf
+rm logind.conf
 
 cp /etc/X11/xorg.conf.d/30-touchpad.conf 30-touchpad.conf
 cp ~/.config/libinput-gestures.conf libinput-gestures.conf
@@ -29,6 +30,7 @@ cp -R /etc/lightdm/ lightdm
 cp ~/.zshrc .zshrc
 cp -R ~/QMK/qmk_firmware/keyboards/katana60 katana60
 cp ~/.conkyrc .conkyrc
+cp /etc/systemd/logind.conf
 
 git add .
 git commit -m "$message"
