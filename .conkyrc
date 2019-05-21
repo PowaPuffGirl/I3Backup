@@ -12,7 +12,7 @@ conky.config = {
 
 -- -------------------- Conky's Run Time Parameters -------------------- #
 
-	update_interval = 1.0,-- Conky update interval in seconds
+	update_interval = 2.0,-- Conky update interval in seconds
 	total_run_times = 0,-- Number of updates before quitting.  Set to zero to run forever.
 	no_buffers = true,-- Subtract file system buffers from used memory?
 	cpu_avg_samples = 2,-- Number of cpu samples to average. Set to 1 to disable averaging

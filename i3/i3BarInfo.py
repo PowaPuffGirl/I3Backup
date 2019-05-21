@@ -74,6 +74,7 @@ def printAvgCpu(lines):
 	print(',')		
 	print(getI3Json(inputText = str(cpu) + '%', urgent = urgent, separator = True, separator_block_width = 12))
 
+batteryValue = []
 def printBattery(lines):
 	batteryicon=lines[82]
 	battery=lines[83]
@@ -98,7 +99,22 @@ def printBattery(lines):
 	else:
 		text = text + ' CHR '
 	if ')' in battery:
-		text = text + battery[len(battery)-8:len(battery)]
+		timeh = battery[len(battery)-7:len(battery)-5]
+		timem = battery[len(battery)-4:len(battery)-2]
+	time = int(timeh)*60 + int(timem)
+	if len(batteryValue) >= 10:
+		batteryValue.pop()
+	batteryValue.append(time)
+	time = 0
+	for val in batteryValue:
+		time = time + val;
+	time = time / len(batteryValue)
+	h = math.floor(time/60)
+	m = math.floor((time/60-h)*60)
+	strm = str(m)
+	if len(strm) == 1:
+		strm = "0" + strm
+	text = text + "(" + str(h) + ":" + strm + ")"
 	print(getI3Json(inputText = batteryicon, textColor = color))
 	print(',')		
 	print(getI3Json(inputText = text, separator = True, separator_block_width = 12, textColor = color))
