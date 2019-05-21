@@ -102,8 +102,8 @@ def printBattery(lines):
 		timeh = battery[len(battery)-7:len(battery)-5]
 		timem = battery[len(battery)-4:len(battery)-2]
 	time = int(timeh)*60 + int(timem)
-	if len(batteryValue) >= 10:
-		batteryValue.pop()
+	if len(batteryValue) >= 20:
+		batteryValue.pop(0)
 	batteryValue.append(time)
 	time = 0
 	for val in batteryValue:
