@@ -1,2 +1,2 @@
 #!/bin/bash
-code
+code --max-memory=4096MB
