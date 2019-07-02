@@ -1,11 +1,4 @@
-Chromium
-PyCharm
-Rider
-Factorio
-Clion
-IntelliJ
 Terminator
-Firefox
 Nautilus
 Gedit
 Z-ShutdownNow
@@ -14,7 +7,5 @@ Inkscape
 Libreoffice
 Gimp
 Screenshot
-AndroidStudio
+Opera
 VisualStudioCode
-Octave
-Matlab

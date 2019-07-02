@@ -3,13 +3,13 @@
 set $mod Mod4
 
 #ColorTheaming
-set $taskbar-color #222222
+set $taskbar-color #07080c
 set $taskbar-separator-color #666666
-set $main-color #eeff00
-set $main-window-color #222222
-set $blue-color #0c69ff
+set $main-color #00b8ff
+set $main-window-color #07080c
+set $blue-color #ffa600
 set $urgent-color #E53935
-set $unfocused-window-color #444444
+set $unfocused-window-color #0d101a
 set $active-text-color #dddddd
 set $active-toolbar-text-color #000000
 set $inaktive-text-color #888888
@@ -23,13 +23,13 @@ font pango:alma mono 10
 
 ##Key Bindings
 # start terminator as terminal
-bindsym $mod+Return exec terminator
+bindsym $mod+Return exec --no-startup-id terminator
 
 # kill focused window
 bindsym $mod+Shift+q kill
 
 # start rofi
-bindsym $mod+d exec sh $thisPath/startRofi.sh "$taskbar-color" "$active-toolbar-text-color" "$main-color" "$inaktive-text-color" "$unfocused-window-color"
+bindsym $mod+d exec --no-startup-id sh $thisPath/startRofi.sh "$taskbar-color" "$active-toolbar-text-color" "$main-color" "$inaktive-text-color" "$unfocused-window-color"
 
 # focuse surounding windows:
 bindsym $mod+Left focus left
@@ -61,19 +61,19 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+Shift+r restart
 
 # exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+bindsym $mod+Shift+e exec --no-startup-id "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
 
 #lock screen
-bindsym $mod+l exec ~/.config/i3/lockscreen.sh
+bindsym $mod+l exec --no-startup-id ~/.config/i3/lockscreen.sh
 
 #scale second monitor works also for fn+f8
-bindsym $mod+p exec sh $thisPath/startDisplayRofi.sh "$taskbar-color" "$active-text-color" "$blue-color" "$inaktive-text-color" "$unfocused-window-color"
+bindsym $mod+p exec --no-startup-id sh $thisPath/startDisplayRofi.sh "$taskbar-color" "$active-text-color" "$blue-color" "$inaktive-text-color" "$unfocused-window-color"
 
 # Media player controls
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86AudioStop exec playerctl stop
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioStop exec --no-startup-id playerctl stop
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id sh $thisPath/updateVolume.sh +5%
@@ -81,13 +81,13 @@ bindsym XF86AudioLowerVolume exec --no-startup-id sh $thisPath/updateVolume.sh -
 bindsym XF86AudioMute exec --no-startup-id sh $thisPath/muteVolume.sh toggle
 
 # Sreen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 5
-bindsym XF86MonBrightnessDown exec xbacklight -dec 5
+bindsym XF86MonBrightnessUp exec --no-startup-id xbacklight -inc 5
+bindsym XF86MonBrightnessDown exec --no-startup-id xbacklight -dec 5
 
 # Keyboard controls
-bindsym XF86Tools exec $thisPath/toggleNetwork.sh
-bindsym XF86TouchpadOn exec xbacklight -inc 5
-bindsym XF86TouchpadOff exec xbacklight -dec 5
+bindsym XF86Tools exec --no-startup-id $thisPath/toggleNetwork.sh
+bindsym XF86TouchpadOn exec --no-startup-id xbacklight -inc 5
+bindsym XF86TouchpadOff exec --no-startup-id xbacklight -dec 5
 
 #unused multimedia keys
 #bindsym XF86Search exec 
@@ -179,13 +179,12 @@ bar {
 }
 
 ##executed startup programms
+exec --no-startup-id sh $thisPath/randwallpaper.sh
 exec --no-startup-id sh $thisPath/runConky.sh
 exec --no-startup-id xautolock -time 10 -locker "sh $thisPath/lockscreen.sh" -corners 0-00 -cornersize 2
 exec --no-startup-id xss-lock -- sh $thisPath/lockscreen.sh
-exec nm-applet
-exec compton -CGb --no-fading-openclose
+exec --no-startup-id nm-applet
+##exec --no-startup-id compton -CGb --no-fading-openclose
 exec --no-startup-id libinput-gestures-setup start
-exec sh $thisPath/randWallpaper.sh
-
-exec_always redshift -P -O 5400
-exec_always sh $thisPath/ScreenCommands/Reset.sh
+exec_always --no-startup-id redshift -P -O 5400
+exec_always --no-startup-id sh $thisPath/ScreenCommands/Reset.sh

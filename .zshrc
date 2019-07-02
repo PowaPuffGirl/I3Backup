@@ -2,7 +2,7 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/home/buttercup/.oh-my-zsh"
+export ZSH="/usr/share/oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -13,9 +13,7 @@ POWERLEVEL9K_MODE='Font Awesome 5 Free solid'
 # source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 POWERLEVEL9K_DISABLE_RPROMPT=true
 
-POWERLEVEL9K_CUSTOM_ICON="echo  "
-POWERLEVEL9K_CUSTOM_ICON_BACKGROUND=069
-POWERLEVEL9K_CUSTOM_ICON_FOREGROUND=015
+POWERLEVEL9K_DIR_HOME_BACKGROUND=039
 
 POWERLEVEL9K_USER_ICON=' '
 POWERLEVEL9K_HOME_ICON=''

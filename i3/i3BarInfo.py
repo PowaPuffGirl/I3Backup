@@ -4,7 +4,7 @@ from time import sleep
 import sys
 from time import localtime, strftime
 
-def getI3Json(inputText, shortText = None, textColor = '#ffffff', backgroundColor = '#222222', borderColor = '#222222', minWidth = None, align = 'right', urgent = False, separator = False, separator_block_width = 0):
+def getI3Json(inputText, shortText = None, textColor = '#ffffff', backgroundColor = '#07080c', borderColor = '#07080c', minWidth = None, align = 'right', urgent = False, separator = False, separator_block_width = 0):
 	text = ''
 	text = text + getJsonElement('{"full_text": ', inputText, True)	
 	if shortText != None:

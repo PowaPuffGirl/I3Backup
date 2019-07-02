@@ -28,11 +28,12 @@
   [[myProfil]]
     background_type = transparent
     cursor_blink = False
-    cursor_color = "#eeff00"
+    cursor_color = "#00b8ff"
     cursor_color_fg = False
-    font = NK57 Monospace Bold Condensed 12
+    font = Source Code Pro Heavy 11
     foreground_color = "#eeeeec"
     icon_bell = False
     palette = "#231f20:#ee2e24:#00853e:#ffd204:#009ddc:#98005d:#85cebc:#d9d8d8:#737171:#ee2e24:#00853e:#ffd204:#009ddc:#98005d:#85cebc:#ffffff"
     show_titlebar = False
     use_system_font = False
+    use_theme_colors = True

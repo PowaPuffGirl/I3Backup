@@ -90,7 +90,7 @@ ${color0}MAC Address: $color${execi 99999 cat /sys/class/net/wlp58s0/address }
 
 # CPU information
 ${color1}CPU ${hr 3}$color
-${color0}Avg. Load: $color${font FontAwesome:size=9}  ${font}$loadavg
+${color0}Avg. Load: $color${font Font Awesome 5 Free:style=Solid:size=9} ${font}$loadavg
 ${color0}CPU 0: $color${cpu cpu0}% ${goto 135}${color7}${cpubar cpu0}
 ${color0}CPU 1: $color${cpu cpu1}% ${goto 135}${color7}${cpubar cpu1}
 ${color0}CPU 2: $color${cpu cpu2}% ${goto 135}${color7}${cpubar cpu2}
@@ -141,25 +141,25 @@ ${color2} ${top_mem name 1} ${top_mem pid 1} ${top_mem cpu 1} ${top_mem mem 1}$c
 
 #system stats
 ${color1}SYSTEM STATS ${hr 3}
-${color0}Volume	${goto 120}${color}${font FontAwesome:size=9}  ${font}${exec /home/buttercup/.config/i3/conkyScripts/volume} ${goto 270}${color0}Brightness ${alignr}${color}${font FontAwesome:size=9} ${font}${exec /home/buttercup/.config/i3/conkyScripts/brightness}
-${color0}CapsLock ${goto 120}${color}${if_match "${exec /home/buttercup/.config/i3/conkyScripts/caps}"=="Unlocked"}${font FontAwesome:size=9}  ${font}unlocked${else}${color2}${font FontAwesome:size=9}  ${font}locked${endif} ${goto 270}${color0}Temp ${alignr}${color}${font FontAwesome:size=9}  ${font}${exec /home/buttercup/.config/i3/conkyScripts/temperature}
+${color0}Volume	${goto 120}${color}${font Font Awesome 5 Free:style=Solid:size=9} ${font}${exec /home/buttercup/.config/i3/conkyScripts/volume} ${goto 260}${color0}Brightness ${alignr}${color}${font Font Awesome 5 Free:style=Solid:size=9}${font} ${exec /home/buttercup/.config/i3/conkyScripts/brightness}
+${color0}CapsLock ${goto 120}${color}${if_match "${exec /home/buttercup/.config/i3/conkyScripts/caps}"=="Unlocked"}${font Font Awesome 5 Free:style=Solid:size=9} ${font}unlocked${else}${color2}${font Font Awesome 5 Free:style=Solid:size=9} ${font}locked${endif} ${goto 260}${color0}Temp ${alignr}${color}${font Font Awesome 5 Free:style=Solid:size=9} ${font}${exec /home/buttercup/.config/i3/conkyScripts/temperature}
 ${color0}Battery ${goto 120}\
 ${if_match "100" == "${exec acpi -b | grep 'Battery 0' | cut -d ' ' -f4 | cut -d '%' -f1}"}\
-${#00ff00}${font FontAwesome:size=9}   ${font}${exec /home/buttercup/.config/i3/conkyScripts/battery}\
+${#00ff00}${font Font Awesome 5 Free:style=Solid:size=9} ${font}${exec /home/buttercup/.config/i3/conkyScripts/battery}\
 ${else}\
 ${if_match "80" <= "${exec acpi -b | grep 'Battery 0' | cut -d ' ' -f4 | cut -d '%' -f1}"}\
-${#00ff00}${font FontAwesome:size=9}   ${font}${exec /home/buttercup/.config/i3/conkyScripts/battery}\
+${#00ff00}${font Font Awesome 5 Free:style=Solid:size=9} ${font}${exec /home/buttercup/.config/i3/conkyScripts/battery}\
 ${else}\
 ${if_match "60" <= "${exec acpi -b | grep 'Battery 0' | cut -d ' ' -f4 | cut -d '%' -f1}"}\
-${#a8ff00}${font FontAwesome:size=9}   ${font}${exec /home/buttercup/.config/i3/conkyScripts/battery}\
+${#a8ff00}${font Font Awesome 5 Free:style=Solid:size=9} ${font}${exec /home/buttercup/.config/i3/conkyScripts/battery}\
 ${else}\
 ${if_match "40" <= "${exec acpi -b | grep 'Battery 0' | cut -d ' ' -f4 | cut -d '%' -f1}"}\
-${#fff600}${font FontAwesome:size=9}   ${font}${exec /home/buttercup/.config/i3/conkyScripts/battery}\
+${#fff600}${font Font Awesome 5 Free:style=Solid:size=9} ${font}${exec /home/buttercup/.config/i3/conkyScripts/battery}\
 ${else}\
 ${if_match "20" <= "${exec acpi -b | grep 'Battery 0' | cut -d ' ' -f4 | cut -d '%' -f1}"}\
-${#ffae00}${font FontAwesome:size=9}   ${font}${exec /home/buttercup/.config/i3/conkyScripts/battery}\
+${#ffae00}${font Font Awesome 5 Free:style=Solid:size=9} ${font}${exec /home/buttercup/.config/i3/conkyScripts/battery}\
 ${else}\
-${#ff0000}${font FontAwesome:size=9}   ${font}${exec /home/buttercup/.config/i3/conkyScripts/battery}\
+${#ff0000}${font Font Awesome 5 Free:style=Solid:size=9} ${font}${exec /home/buttercup/.config/i3/conkyScripts/battery}\
 ${endif}\
 ${endif}\
 ${endif}\

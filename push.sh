@@ -19,6 +19,24 @@ rm .conkyrc
 rm libinput-gestures.conf
 rm 30-touchpad.conf
 rm logind.conf
+rm -R themes
+rm -R 'gtk3.0'
+
+mkdir themes
+#gtk themes
+cp /usr/share/themes/Sweet ./themes
+cp /usr/share/themes/Sweet-Ambar ./themes
+cp /usr/share/themes/Sweet-Ambar-Blue ./themes
+cp /usr/share/themes/Sweet-Dark ./themes
+
+#icons
+#also at .icons and .local/share/icons 
+cp /usr/share/themes/Sweet-Blue-Filled ./themes
+cp /usr/share/themes/Sweet-Purple-Filled ./themes
+cp /usr/share/themes/Sweet-Teal-Filled ./themes
+cp /usr/share/themes/Sweet-Yellow-Filled ./themes
+
+cp '~/.config/gtk-3.0' 'gtk-3.0'
 
 cp /etc/X11/xorg.conf.d/30-touchpad.conf 30-touchpad.conf
 cp ~/.config/libinput-gestures.conf libinput-gestures.conf
