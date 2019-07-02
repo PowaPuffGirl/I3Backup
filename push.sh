@@ -20,7 +20,7 @@ rm libinput-gestures.conf
 rm 30-touchpad.conf
 rm logind.conf
 rm -R themes
-rm -R gtk3.0
+rm -R gtk-3.0
 
 mkdir themes
 #gtk themes
