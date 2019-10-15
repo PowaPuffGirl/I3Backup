@@ -1,2 +1,2 @@
 #!/bin/bash
-sh ~/Clion/clion-2018.2.2/bin/clion.sh
+sh ~/CLion/clion-2019.2.4/bin/clion.sh
