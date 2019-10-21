@@ -1,19 +1,8 @@
 youtube-dl
-vlc
-ffmpeg
-imagemagic
-calc
-xorg-xrandr
+vlc ffmpeg imagemagic calc xorg-xrandr
 vim
 terminator
-redshift
-playerctl
-gparted
-net-tools
-xdotools
-wmctrl
-xinput
-xorg-xinput
+redshift playerctl gparted net-tools xdotools wmctrl xinput xorg-xinput
 
 Printing
 cups

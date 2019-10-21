@@ -3,6 +3,7 @@ import math
 from time import sleep
 import sys
 from time import localtime, strftime
+import os
 
 def getI3Json(inputText, shortText = None, textColor = '#ffffff', backgroundColor = '#07080c', borderColor = '#07080c', minWidth = None, align = 'right', urgent = False, separator = False, separator_block_width = 0):
 	text = ''
@@ -46,7 +47,7 @@ def printTime():
 def printCpuTemp(lines):
 	temperatureicon=lines[79]
 	temperature=lines[80]
-	temp=temperature[1:len(temperature)-5]
+	temp=temperature[1:len(temperature)-3]
 	if int(temp) > 80:
 		urgent = True
 	else:
@@ -77,8 +78,7 @@ def printAvgCpu(lines):
 batteryValue = []
 def printBattery(lines):
 	batteryicon=lines[82]
-	battery=lines[83]
-	bat=battery[0:3]
+	bat=os.popen('cat /sys/class/power_supply/BAT0/capacity').read()
 	if bat.endswith('% '):
 		bat=bat[0:len(bat)-2]
 	elif bat.endswith(' ') or bat.endswith('%'):
@@ -93,7 +93,8 @@ def printBattery(lines):
 		color='#ffae00'
 	else:
 		color='#ff0000'
-	text = str(bat) + '%'
+	text = str(bat).rstrip() + '%'
+	'''
 	if 'discharging' in battery:
 		text = text + ' DIS '
 	else:
@@ -115,6 +116,7 @@ def printBattery(lines):
 		if len(strm) == 1:
 			strm = "0" + strm
 		text = text + "(" + str(h) + ":" + strm + ")"
+	'''
 	print(getI3Json(inputText = batteryicon, textColor = color))
 	print(',')		
 	print(getI3Json(inputText = text, separator = True, separator_block_width = 12, textColor = color))

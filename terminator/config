@@ -26,14 +26,13 @@
     cursor_color = "#aaaaaa"
     show_titlebar = False
   [[myProfil]]
-    background_type = transparent
+    background_color = "#f1e9e9"
     cursor_blink = False
     cursor_color = "#00b8ff"
     cursor_color_fg = False
     font = Source Code Pro Heavy 11
-    foreground_color = "#eeeeec"
+    foreground_color = "#ba3333"
     icon_bell = False
-    palette = "#231f20:#ee2e24:#00853e:#ffd204:#009ddc:#98005d:#85cebc:#d9d8d8:#737171:#ee2e24:#00853e:#ffd204:#009ddc:#98005d:#85cebc:#ffffff"
+    palette = "#073642:#dc322f:#859900:#b58900:#268bd2:#d33682:#2aa198:#eee8d5:#002b36:#cb4b16:#586e75:#657b83:#839496:#6c71c4:#93a1a1:#fdf6e3"
     show_titlebar = False
     use_system_font = False
-    use_theme_colors = True

@@ -1,16 +1,13 @@
-# If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
-
 # Path to your oh-my-zsh installation.
-export ZSH="/usr/share/oh-my-zsh"
+export ZSH="/home/buttercup/.oh-my-zsh"
+export LANG="en_US.UTF-8"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME=powerlevel10k/powerlevel10k
+source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 POWERLEVEL9K_MODE='Font Awesome 5 Free solid'
-# source /usr/share/zsh-theme-powerlevel9k/powerlevel9k.zsh-theme
 POWERLEVEL9K_DISABLE_RPROMPT=true
 
 POWERLEVEL9K_DIR_HOME_BACKGROUND=039
@@ -80,7 +77,6 @@ POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user dir_writable dir vcs)
 plugins=(
   git
   zsh-autosuggestions
-  autojump
 )
 
 bindkey '^ ' autosuggest-accept
