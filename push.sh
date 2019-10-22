@@ -7,54 +7,41 @@ then
 	message=$1
 fi
 
-cd ~/git/I3Backup
+cd /home/buttercup/git/I3Backup
 rm -R i3
 rm -R i3blocks
 rm -R terminator
 rm .Xresources
-rm -R lightdm
 rm .zshrc
 rm -R katana60
 rm .conkyrc
 rm libinput-gestures.conf
 rm 30-touchpad.conf
 rm logind.conf
-rm -R themes
 rm -R gtk-3.0
 rm -R sddm-themes
 rm sddm.conf
 
-mkdir themes
-#gtk themes
-cp -R /usr/share/themes/Sweet ./themes
-cp -R /usr/share/themes/Sweet-Ambar ./themes
-cp -R /usr/share/themes/Sweet-Ambar-Blue ./themes
-cp -R /usr/share/themes/Sweet-Dark ./themes
+cp -R /home/buttercup/.config/gtk-3.0 gtk-3.0
 
-#icons
-#also at .icons and .local/share/icons 
-cp -R /usr/share/themes/Sweet-Blue-Filled ./themes
-cp -R /usr/share/themes/Sweet-Purple-Filled ./themes
-cp -R /usr/share/themes/Sweet-Teal-Filled ./themes
-cp -R /usr/share/themes/Sweet-Yellow-Filled ./themes
-
-cp -R ~/.config/gtk-3.0 gtk-3.0
-
-cp -R /usr/share/sddm/themes/sugar-dark ./sugar-dark
+mkdir sddm-themes
+sudo cp -R /usr/share/sddm/themes/sugar-dark ./sddm-themes/sugar-dark
 cp /etc/sddm.conf sddm.conf
 
 cp /etc/X11/xorg.conf.d/30-touchpad.conf 30-touchpad.conf
-cp ~/.config/libinput-gestures.conf libinput-gestures.conf
-cp -R ~/.config/i3 i3 
-cp -R ~/.config/i3blocks i3blocks
-cp -R ~/.config/terminator terminator
-cp ~/.Xresources .Xresources
-cp -R /etc/lightdm/ lightdm
-cp ~/.zshrc .zshrc
-cp -R ~/QMK/qmk_firmware/keyboards/katana60 katana60
-cp ~/.conkyrc .conkyrc
+cp /home/buttercup/.config/libinput-gestures.conf libinput-gestures.conf
+cp -R /home/buttercup/.config/i3 i3 
+cp -R /home/buttercup/.config/i3blocks i3blocks
+cp -R /home/buttercup/.config/terminator terminator
+cp /home/buttercup/.Xresources .Xresources
+cp /home/buttercup/.zshrc .zshrc
+cp -R /home/buttercup/QMK/qmk_firmware/keyboards/katana60 katana60
+cp /home/buttercup/.conkyrc .conkyrc
 cp /etc/systemd/logind.conf logind.conf
 
-git add .
-git commit -m "$message"
-git push
+cd ..
+sudo chown -R buttercup I3Backup
+
+#git add .
+#git commit -m "$message"
+#git push
