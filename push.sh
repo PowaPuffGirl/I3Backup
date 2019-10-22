@@ -21,6 +21,8 @@ rm 30-touchpad.conf
 rm logind.conf
 rm -R themes
 rm -R gtk-3.0
+rm -R sddm-themes
+rm sddm.conf
 
 mkdir themes
 #gtk themes
@@ -37,6 +39,9 @@ cp -R /usr/share/themes/Sweet-Teal-Filled ./themes
 cp -R /usr/share/themes/Sweet-Yellow-Filled ./themes
 
 cp -R ~/.config/gtk-3.0 gtk-3.0
+
+cp -R /usr/share/sddm/themes/sugar-dark ./sugar-dark
+cp /etc/sddm.conf sddm.conf
 
 cp /etc/X11/xorg.conf.d/30-touchpad.conf 30-touchpad.conf
 cp ~/.config/libinput-gestures.conf libinput-gestures.conf

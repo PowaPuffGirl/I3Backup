@@ -118,6 +118,9 @@ mkdir git
 cd git
 git clone git@github.com:PowaPuffGirl/I3Backup.git
 ##copy stuff to places
+cd I3Backup
+sudo cp buttercup.face.icon /usr/share/sddm/faces
+sudo pacman -S qt (11, 18, 19, 30)
 
 sudo pacman -S rofi
 sudo pacman -S feh
