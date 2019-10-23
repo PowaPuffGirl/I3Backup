@@ -1,13 +1,14 @@
 #!/bin/bash
 
 ###################################################
-##						##
-##   Todo:					##
-##	add path to ssh keys 			##
-##	copy ssh keys 				##
-##	copy i3 stuff to where it belongs	##
-##	change buttercup to user variable	##
-##			 			##
+##						 ##
+##   Todo:					 ##
+##	add path to ssh keys 			 ##
+##	copy ssh keys 				 ##
+##	copy i3 stuff to where it belongs	 ##
+##	change buttercup to user variable	 ##
+##	install only neccassary qt libs		 ##
+##			 			 ##
 ###################################################
 echo "please create user and pass username and host name to script"
 echo "please pass location of ssh files folder"
@@ -17,6 +18,7 @@ sudo pacman -Syu
 ##xserver
 sudo pacman -S xorg-server 
 sudo pacman -S xorg-xinit
+sudo pacman -S xorg-xbacklight
 sudo pacman -S xf86-video-intel
 localectl set-x11-keymap de pc105 nodeadkeys
 
@@ -39,6 +41,7 @@ sudo pacman -S xorg-xrandr
 sudo pacman -S wget
 sudo pacman -S curl
 sudo pacman -S wmctrl 
+sudo pacman -S man
 
 ##git
 sudo pacman -S git
@@ -114,6 +117,7 @@ sudo pacman -S xss-lock
 
 #i3
 sudo pacman -S i3
+sudo pacman -S i3lock-color
 mkdir git
 cd git
 git clone git@github.com:PowaPuffGirl/I3Backup.git

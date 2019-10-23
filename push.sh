@@ -1,11 +1,11 @@
 #!/bin/bash
 
-message="no Message"
-
-if ! [[ -z $1 ]]
-then
-	message=$1
-fi
+#message="no Message"
+#
+#if ! [[ -z $1 ]]
+#then
+#	message=$1
+#fi
 
 cd /home/buttercup/git/I3Backup
 rm -R i3

@@ -9,7 +9,6 @@ Libreoffice
 Gimp
 Screenshot
 Opera
+Firefox
 IntelliJ
-AndroidStudio
-Clion
 VisualStudioCode

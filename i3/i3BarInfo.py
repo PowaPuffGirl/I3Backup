@@ -3,7 +3,9 @@ import math
 from time import sleep
 import sys
 from time import localtime, strftime
+import time
 import os
+import subprocess
 
 def getI3Json(inputText, shortText = None, textColor = '#ffffff', backgroundColor = '#07080c', borderColor = '#07080c', minWidth = None, align = 'right', urgent = False, separator = False, separator_block_width = 0):
 	text = ''
@@ -42,229 +44,183 @@ def getJsonElement(key, value, printComma):
 	return text
 
 def printTime():
-	print(getI3Json(inputText = strftime("%D %H:%M:%S", localtime()), separator = True, separator_block_width = 12))
+	return getI3Json(inputText = strftime("%D %H:%M:%S", localtime()), separator = True, separator_block_width = 12)
 
-def printCpuTemp(lines):
-	temperatureicon=lines[79]
-	temperature=lines[80]
-	temp=temperature[1:len(temperature)-3]
-	if int(temp) > 80:
+def printCpuTemp():
+	temp=0.0
+	temperatureicon=""
+	tempvals=os.popen("sensors | grep Core | awk -F ' ' '{print $3}'").read().split('\n')
+	for x in range(0, len(tempvals)-1):
+		valueString=tempvals[x]
+		temp = temp + float(valueString[1:len(valueString)-2])
+	temp=temp/2
+	if temp > 80:
 		urgent = True
 	else:
 		urgent = False
-	print(getI3Json(inputText = temperatureicon, urgent = urgent))
-	print(',')
-	print(getI3Json(inputText = temperature, urgent = urgent, separator = True, separator_block_width = 12))
+	temperature=str(temp) + "°C"
+	return getI3Json(inputText = temperatureicon, urgent = urgent) + '\n,\n' + getI3Json(inputText = temperature, urgent = urgent, separator = True, separator_block_width = 12)
 
-def printAvgCpu(lines):
-	cpu0=lines[20]
-	cpu1=lines[22]
-	cpu2=lines[24]
-	cpu3=lines[26]
-	cpuicon=lines[17]
-	cpu0=cpu0[0:len(cpu0)-3]
-	cpu1=cpu1[0:len(cpu1)-3]
-	cpu2=cpu2[0:len(cpu2)-3]
-	cpu3=cpu3[0:len(cpu3)-3]
-	cpu = int((int(cpu0) + int(cpu1) + int(cpu2) + int(cpu3))/4*10)/10
+def printAvgCpu():
+	cpuicon=""
+	usages=os.popen("ps -eo pcpu").read().split('\n')
+	cpuInt=0
+	for x in range(1, len(usages)-1):
+		cpuInt=cpuInt+float(usages[x])
+	cpuInt=cpuInt/4
+	cpu=float("{0:.2f}".format(cpuInt))
 	if cpu > 90:
 		urgent=True
 	else:
 		urgent=False 
-	print(getI3Json(inputText = cpuicon, urgent = urgent))
-	print(',')		
-	print(getI3Json(inputText = str(cpu) + '%', urgent = urgent, separator = True, separator_block_width = 12))
+	return getI3Json(inputText = cpuicon, urgent = urgent) + '\n,\n' + getI3Json(inputText = str(cpu) + '%', urgent = urgent, separator = True, separator_block_width = 12)
 
-batteryValue = []
-def printBattery(lines):
-	batteryicon=lines[82]
-	bat=os.popen('cat /sys/class/power_supply/BAT0/capacity').read()
-	if bat.endswith('% '):
-		bat=bat[0:len(bat)-2]
-	elif bat.endswith(' ') or bat.endswith('%'):
-		bat=bat[0:len(bat)-1]
-	if int(bat) > 80:
+def printBattery():
+	battery=os.popen('acpi').read()
+	batterySplitted=battery.split(" ")
+	bat=batterySplitted[3]
+	if bat.endswith('\n'):
+		bat = bat[0:len(bat)-2]
+	if bat.endswith(','):
+		bat = bat[0:len(bat)-1]
+	if bat.endswith('%'):
+		bat = bat[0:len(bat)-1]
+	bat=int(bat)
+	if bat > 80:
+		batteryicon=""
 		color='#00ff00'
-	elif int(bat) > 60:
+	elif bat > 60:
+		batteryicon="" 
 		color='#a8ff00'
-	elif int(bat) > 40:
+	elif bat > 40:
+		batteryicon="" 
 		color='#fff600'
-	elif int(bat) > 20:
+	elif bat > 20:
+		batteryicon=""
 		color='#ffae00'
 	else:
+		batteryicon=""
 		color='#ff0000'
-	text = str(bat).rstrip() + '%'
-	'''
-	if 'discharging' in battery:
-		text = text + ' DIS '
+	text = str(bat) + '% ' 
+	if len(batterySplitted) > 4:				
+		timeval=batterySplitted[4]
+		textRemaining = "(" + timeval[0:len(timeval)-3] + ")"
+		text = text + textRemaining
+	if "Discharging" not in battery or "Full" in battery:
+		text = text + " "
+	return getI3Json(inputText = batteryicon, textColor = color) + '\n,\n' + getI3Json(inputText = text, separator = True, separator_block_width = 12, textColor = color)		
+
+def printWIFI():
+	wifiip=os.popen('hostname -i').read().split(" ")
+	ip = ""
+	if len(wifiip[1]) > 5:
+		ip="WIFI (" + wifiip[1] + ")"
+		textColor='#00ff00'
+	else: 
+		ip="WIFI (No Address)"
+		textColor='#ff0000'
+	return getI3Json(inputText = ip, separator = True, separator_block_width = 12, textColor = textColor)	
+
+
+def printCaps():
+	caps=os.popen('xset -q | grep Caps | cut -d "o" -f 3 | cut -d " " -f 1').read()
+	if "n" in caps: 
+		return getI3Json(inputText = "", urgent = True) + '\n,\n' + getI3Json(inputText = 'locked', urgent = True, separator = True, separator_block_width = 12)
 	else:
-		text = text + ' CHR '
-	if ')' in battery:
-		timeh = battery[len(battery)-7:len(battery)-5]
-		timem = battery[len(battery)-4:len(battery)-2]
-		time = int(timeh)*60 + int(timem)
-		if len(batteryValue) >= 20:
-			batteryValue.pop(0)
-		batteryValue.append(time)
-		time = 0
-		for val in batteryValue:
-			time = time + val;
-		time = time / len(batteryValue)
-		h = math.floor(time/60)
-		m = math.floor((time/60-h)*60)
-		strm = str(m)
-		if len(strm) == 1:
-			strm = "0" + strm
-		text = text + "(" + str(h) + ":" + strm + ")"
-	'''
-	print(getI3Json(inputText = batteryicon, textColor = color))
-	print(',')		
-	print(getI3Json(inputText = text, separator = True, separator_block_width = 12, textColor = color))
+		return getI3Json(inputText = "", urgent = False, separator = True, separator_block_width = 12)
 
-def printWIFI(lines):
-	wifiip=lines[43]
-	if "No Address" in wifiip:
-		print(getI3Json(inputText = wifiip, separator = True, separator_block_width = 12, textColor = '#ff0000'))		
+def printBrightness():
+	brigthnessicon=""
+	brigthness=os.popen("xbacklight | cut -d'.' -f 1").read().rstrip()
+	brigthness=brigthness + "%"
+	return getI3Json(inputText = brigthnessicon) + '\n,\n' + getI3Json(inputText = brigthness, separator = True, separator_block_width = 12)
+
+def printVolume():
+	volumeicon=""
+	sink=os.popen("pacmd list-sinks | awk '/index:/{i++} /* index:/{print i; exit}'").read().rstrip()
+	mute=os.popen("pacmd list-sinks | awk '/^\smuted: /{i++} i=='"+ sink +"'{print $2; exit}'").read()
+	volume=os.popen("pacmd list-sinks | awk '/^\svolume: /{i++} i=='"+ sink + "'{print $5; exit}'").read()
+	text=""
+	if "yes" in mute:
+		text = "Mute"
 	else:
-		print(getI3Json(inputText = wifiip, separator = True, separator_block_width = 12, textColor = '#00ff00'))		
+		text= volume
+	return getI3Json(inputText = volumeicon) + "\n,\n" + getI3Json(inputText = text, separator = True, separator_block_width = 12)
 
+volume=printVolume()
+brightness=printBrightness()
+caps=printCaps()
+wifi=printWIFI()
+avgCpu=printAvgCpu()
+cputemp=printCpuTemp()
+battery=printBattery()
+currentTime=printTime()
 
-def printCaps(lines):
-	capslockicon=lines[76]
-	capslock=lines[77]
-	if "unlocked" not in capslock: 
-		print(getI3Json(inputText = capslockicon, urgent = True))
-		print(',')
-		print(getI3Json(inputText = 'locked', urgent = True, separator = True, separator_block_width = 12))
-	else:
-		print(getI3Json(inputText = capslockicon, urgent = False, separator = True, separator_block_width = 12))
+prevMillis=int(round(time.time() * 1000))
+counter500=0
+counter1000=0
+counter2000=0
+counter5000=0
+sleepTime=1000
+def updateValues():
+	global counter500
+	global counter1000
+	global counter2000
+	global counter5000
+	global volume
+	global brightness
+	global caps
+	global wifi
+	global avgCpu
+	global cputemp
+	global battery
+	global currentTime
+	global sleepTime
+	difference=(int(round(time.time() * 1000)) - prevMillis)
+	if int(difference / 500) > counter500:
+		counter500=counter500+1
+		currentTime=printTime()
+		volume=printVolume()
+		brightness=printBrightness()
+		caps=printCaps()
+		battery=printBattery()
+	if int(difference / 1000) > counter1000:
+		counter1000=counter1000+1
+		wifi=printWIFI()
+		cputemp=printCpuTemp()
+		avgCpu=printAvgCpu()
+	if int(difference / 2000) > counter2000:
+		counter2000=counter2000+1
+	if int(difference / 5000) > counter5000:
+		counter5000=counter5000+1
+	sleepTime=1000 - (difference%1000)
 
-def printBrightness(lines):
-	brigthnessicon=lines[73]
-	brigthness=lines[74]
-	print(getI3Json(inputText = brigthnessicon))
+def updateText():
+	print(',[')
+	print(volume)
 	print(',')
-	print(getI3Json(inputText = brigthness, separator = True, separator_block_width = 12))
-
-def printVolume(lines):
-	volumeicon=lines[70]
-	volume=lines[71]
-	print(getI3Json(inputText = volumeicon))
+	print(brightness)
 	print(',')
-	print(getI3Json(inputText = volume, separator = True, separator_block_width = 12))
-
-def updateText(conkyFile):
-	lines = conkyFile.readlines()
-
-	if len(lines) >= 83:
-		print(',[')
-		printVolume(lines)
+	print(caps)
+	print(',')
+	print(wifi)
+	print(',')
+	print(avgCpu)
+	print(',')
+	print(cputemp)
+	print(',')
+	if battery is not None:
+		print(battery)
 		print(',')
-		printBrightness(lines)
-		print(',')
-		printCaps(lines)
-		print(',')
-		printWIFI(lines)
-		print(',')
-		printAvgCpu(lines)
-		print(',')
-		printCpuTemp(lines)
-		print(',')
-		printBattery(lines)
-		print(',')
-		printTime()
-		print(']')
-		sys.stdout.flush()
-
+	print(currentTime)
+	print(']')
+	sys.stdout.flush()
+	
 print('{ "version": 1 }')
 print('[')
 print('[]')
 
 while True:
-	try:
-		conkyFile = open("/tmp/conkyout.txt", "r")
-		updateText(conkyFile)
-	except (FileNotFoundError, IOError) as e:
-		print('',end = '')
-	finally:
-		sleep(0.5)
-
-'''
-time=lines[0]
-date=lines[1]
-systeminfotext=lines[2]
-systemtext=lines[3]
-systemname=lines[4]
-uptimetext=lines[5]
-uptime=lines[6]
-kernaltext=lines[7]
-kernal=lines[8]
-ostext=lines[9]
-os=lines[10]
-frequencytext=lines[11]
-frequency=lines[12]
-mactext=lines[13]
-mac=lines[14]
-cputext=lines[15]
-loadavgtext=lines[16]
-avgnumber=lines[18]
-cpu0text=lines[19]
-
-cpu1text=lines[21]
-
-cpu2text=lines[23]
-
-cpu3text=lines[25]
-
-Memoryswaptext=lines[27]
-ramusagetext=lines[28]
-ramusage=lines[29]
-rampercentage=lines[30]
-memoryswaptext=lines[31]
-memoryswap=lines[32]
-memorypercentage=lines[33]
-filesystemtext=lines[34]
-filesystemname=lines[35]
-filesystemsize=lines[36]
-filesystempercentage=lines[37]
-readstext=lines[38]
-readspersec=lines[39]
-writestext=lines[40]
-writespersec=lines[41]
-networkingtext=lines[42]
-
-downtext=lines[44]
-downpersec=lines[45]
-uptext=lines[46]
-uppersec=lines[47]
-downtotaltext=lines[48]
-downtotal=lines[49]
-uptotaltext=lines[50]
-uptotal=lines[51]
-empty=lines[52]
-topreasurcestext=lines[53]
-processestext=lines[54]
-numberprocesses=lines[55]
-runningtext=lines[56]
-runningnumber=lines[57]
-cpuusagetext=lines[58]
-tableheader=lines[59]
-top1cpu=lines[60]
-top2cpu=lines[61]
-top3cpu=lines[62]
-memusagetext=lines[63]
-memheader=lines[64]
-top1mem=lines[65]
-top2mem=lines[66]
-top3mem=lines[67]
-systemstatstext=lines[68]
-volumetext=lines[69]
-
-brightnesstext=lines[72]
-
-capslocktext=lines[75]
-
-batterytext=lines[78]
-
-temperaturetext=lines[81]
-'''
+	updateValues()
+	updateText()
+	sleep(sleepTime/1000)
