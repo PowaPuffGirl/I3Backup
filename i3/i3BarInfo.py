@@ -6,6 +6,7 @@ from time import localtime, strftime
 import time
 import os
 import subprocess
+import re 
 
 def getI3Json(inputText, shortText = None, textColor = '#ffffff', backgroundColor = '#07080c', borderColor = '#07080c', minWidth = None, align = 'right', urgent = False, separator = False, separator_block_width = 0):
 	text = ''
@@ -113,14 +114,18 @@ def printBattery():
 def printWIFI():
 	wifiips=os.popen('hostname -i').read().split(" ")
 	ip = ""
-	for wifiip in wifiips:
-		if "172.17.0.1" not in wifiip:
-			ip="WIFI (" + wifiip + ")"
-			textColor='#00ff00'
-			break
-		else:			
-			ip="WIFI (No Address)"
-			textColor='#ff0000'
+	if len(wifiips) > 0:
+		for wifiip in wifiips:
+			if "172.17.0.1" not in wifiip and re.search('(?:\d{3}|\d{2}|\d{1}).(?:\d{3}|\d{2}|\d{1}).(?:\d{3}|\d{2}|\d{1}).(?:\d{3}|\d{2}|\d{1})', wifiip):
+				ip="WIFI (" + wifiip + ")"
+				textColor='#00ff00'
+				break
+			else:			
+				ip="WIFI (No Address)"
+				textColor='#ff0000'
+	else:
+		ip="WIFI (No Address)"
+		textColor='#ff0000'
 	return getI3Json(inputText = ip, separator = True, separator_block_width = 12, textColor = textColor)	
 
 
