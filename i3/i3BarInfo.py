@@ -111,14 +111,16 @@ def printBattery():
 	return getI3Json(inputText = batteryicon, textColor = color) + '\n,\n' + getI3Json(inputText = text, separator = True, separator_block_width = 12, textColor = color)		
 
 def printWIFI():
-	wifiip=os.popen('hostname -i').read().split(" ")
+	wifiips=os.popen('hostname -i').read().split(" ")
 	ip = ""
-	if len(wifiip[1]) > 5:
-		ip="WIFI (" + wifiip[1] + ")"
-		textColor='#00ff00'
-	else: 
-		ip="WIFI (No Address)"
-		textColor='#ff0000'
+	for wifiip in wifiips:
+		if "172.17.0.1" not in wifiip:
+			ip="WIFI (" + wifiip + ")"
+			textColor='#00ff00'
+			break
+		else:			
+			ip="WIFI (No Address)"
+			textColor='#ff0000'
 	return getI3Json(inputText = ip, separator = True, separator_block_width = 12, textColor = textColor)	
 
 
@@ -183,7 +185,6 @@ def updateValues():
 		volume=printVolume()
 		brightness=printBrightness()
 		caps=printCaps()
-		battery=printBattery()
 	if int(difference / 1000) > counter1000:
 		counter1000=counter1000+1
 		wifi=printWIFI()
@@ -193,6 +194,7 @@ def updateValues():
 		counter2000=counter2000+1
 	if int(difference / 5000) > counter5000:
 		counter5000=counter5000+1
+		battery=printBattery()
 	sleepTime=1000 - (difference%1000)
 
 def updateText():

@@ -34,6 +34,7 @@ sudo systemctl enable sddm.service
 
 ##powersave
 sudo pacman -S acpid
+sudo pacman -S acpi
 sudo systemctl enable acpid.service
 
 ##something else
