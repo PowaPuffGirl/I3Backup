@@ -1,0 +1,9 @@
+{
+    "diffEditor.ignoreTrimWhitespace": false,
+    "window.zoomLevel": 0,
+    "files.autoSave": "onFocusChange",
+    "angular-schule.configUpdated": "0.4.6",
+    "workbench.colorTheme": "Atom One Light",
+    "editor.fontWeight": "600",
+    "editor.fontFamily": "'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback', 'Font Awesome 5 Free Solid', 'Source Code Pro'"
+}
